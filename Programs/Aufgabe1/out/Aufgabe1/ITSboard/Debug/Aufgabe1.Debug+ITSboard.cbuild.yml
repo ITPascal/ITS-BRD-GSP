@@ -325,9 +325,19 @@ build:
       files:
         - file: ../../../../../../ITS_BRD_LIB/Inc/lcd.h
           category: header
+        - file: ../../../../Inc/display.h
+          category: header
+        - file: ../../../../Inc/scanner.h
+          category: header
+        - file: ../../../../Inc/token.h
+          category: header
     - group: Program/User/Src
       files:
         - file: ../../../../Src/main.c
+          category: sourceC
+        - file: ../../../../Src/display.c
+          category: sourceC
+        - file: ../../../../Src/scanner.c
           category: sourceC
   constructed-files:
     - file: ../../../../RTE/_Debug_ITSboard/RTE_Components.h
