@@ -1,0 +1,16 @@
+# Target labels
+ TestNewFont.Debug+ITSboard
+# Source files and their labels
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-complete.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-build.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-configure.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-database.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-download.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-executes.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-install.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-mkdir.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-patch.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-test.rule
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-update.rule
