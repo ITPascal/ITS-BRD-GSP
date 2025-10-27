@@ -1,5 +1,5 @@
-#ifndef _CALCULATOR_H
-#define _CALCULATOR_H
+#ifndef _ARITH_LIB_H
+#define _ARITH_LIB_H
 /*
  ****************************************************************************************
  * @brief : This function takes the first 2 entries from the stack, adds the second 
