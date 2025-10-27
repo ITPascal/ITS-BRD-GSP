@@ -7,6 +7,9 @@
   */
 /* Includes ------------------------------------------------------------------*/
 
+#include "display.h"
+#include "keypad.h"
+#include "scanner.h"
 #include "stm32f4xx_hal.h"
 #include "init.h"
 #include "LCD_GUI.h"
@@ -15,20 +18,20 @@
 #include "fontsFLASH.h"
 #include "additionalFonts.h"
 #include "error.h"
+#include "token.h"
+#include <stdbool.h>
+#include <stdlib.h>
 
 
 int main(void) {
 	initITSboard();    // Initialisierung des ITS Boards
-	
-	GUI_init(DEFAULT_BRIGHTNESS);   // Initialisierung des LCD Boards mit Touch
+	initDisplay();		//Initialisierung der Taschenrechner GUIs
 	TP_Init(false);                 // Initialisierung des LCD Boards mit Touch
-
-	// Begruessungstext	
-	lcdPrintlnS("Hallo liebes TI-Labor (c-project)");
 	
+
 	// Test in Endlosschleife
 	while(1) {
-		HAL_Delay(10000);
+		printToEchoLine(getKeyPadInput());
 	}
 }
 

@@ -1,11 +1,11 @@
 # Target labels
  TestNewFont.Debug+ITSboard
 # Source files and their labels
-/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-database
-/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-database.rule
-/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-database.rule
-/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-configure.rule
-/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-patch.rule
-/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-update.rule
-/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-download.rule
-/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-mkdir.rule
+C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-database
+C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-database.rule
+C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-database.rule
+C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-configure.rule
+C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-patch.rule
+C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-update.rule
+C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-download.rule
+C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/TestNewFont.Debug+ITSboard-mkdir.rule

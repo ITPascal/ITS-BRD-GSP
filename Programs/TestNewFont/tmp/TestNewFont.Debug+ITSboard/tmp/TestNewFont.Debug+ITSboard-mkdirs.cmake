@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard"
-  "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/1"
-  "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard"
-  "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/tmp"
-  "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp"
-  "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src"
-  "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp"
+  "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard"
+  "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/1"
+  "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard"
+  "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/tmp"
+  "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp"
+  "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src"
+  "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/TestNewFont.Debug+ITSboard/src/TestNewFont.Debug+ITSboard-stamp${cfgdir}") # cfgdir has leading slash
 endif()

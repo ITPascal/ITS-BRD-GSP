@@ -333,6 +333,10 @@ build:
           category: header
         - file: ../../../../Inc/stack.h
           category: header
+        - file: ../../../../Inc/keypad.h
+          category: header
+        - file: ../../../../Inc/calculator.h
+          category: header
     - group: Program/User/Src
       files:
         - file: ../../../../Src/main.c
@@ -342,6 +346,10 @@ build:
         - file: ../../../../Src/scanner.c
           category: sourceC
         - file: ../../../../Src/stack.c
+          category: sourceC
+        - file: ../../../../Src/keypad.c
+          category: sourceC
+        - file: ../../../../Src/calculator.c
           category: sourceC
   constructed-files:
     - file: ../../../../RTE/_Debug_ITSboard/RTE_Components.h

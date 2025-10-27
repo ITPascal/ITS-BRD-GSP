@@ -1,8 +1,8 @@
-# Install script for directory: /Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp
+# Install script for directory: C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/usr/local")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/TestNewFont")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/TestNewFont/tmp/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
