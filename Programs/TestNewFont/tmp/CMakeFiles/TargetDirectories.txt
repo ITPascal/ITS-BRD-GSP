@@ -1,8 +1,0 @@
-C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/database.dir
-C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard.dir
-C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-build.dir
-C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-configure.dir
-C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-executes.dir
-C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/TestNewFont.Debug+ITSboard-database.dir
-C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/edit_cache.dir
-C:/Shared_GS/ITS-BRD-GSP/Programs/TestNewFont/tmp/CMakeFiles/rebuild_cache.dir
