@@ -1,5 +1,6 @@
 CompileFlags:
-  CompilationDatabase: c:\Shared_GS\ITS-BRD-GSP\Programs\Aufgabe1\out\Aufgabe1\ITSboard\Debug
+  CompilationDatabase: >-
+    /Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/out/Aufgabe1/ITSboard/Debug
   Add:
     - '-D_ILP32=1'
     - '-D_USE_STATIC_INLINE=1'

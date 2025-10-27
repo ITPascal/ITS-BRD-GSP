@@ -1,11 +1,11 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-set(command "C:/Users/sawil/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/cmake.exe;-G;Ninja;-S;C:/Shared_GS/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard;-B;C:/Shared_GS/ITS-BRD-GSP/Programs/Aufgabe1/tmp/1;-DSOLUTION_ROOT=C:/Shared_GS/ITS-BRD-GSP/Programs/Aufgabe1;-DCMSIS_PACK_ROOT=C:/Users/sawil/AppData/Local/Arm/Packs;-DCMSIS_COMPILER_ROOT=C:/Users/sawil/.vcpkg/artifacts/2139c4c6/tools.open.cmsis.pack.cmsis.toolbox/2.11.0/etc")
+set(command "/Users/pascalsendecky/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/cmake;-G;Ninja;-S;/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard;-B;/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/1;-DSOLUTION_ROOT=/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1;-DCMSIS_PACK_ROOT=/Users/pascalsendecky/.cache/arm/packs;-DCMSIS_COMPILER_ROOT=/Users/pascalsendecky/.vcpkg/artifacts/2139c4c6/tools.open.cmsis.pack.cmsis.toolbox/2.11.0/etc")
 set(log_merged "")
 set(log_output_on_failure "ON")
-set(stdout_log "C:/Shared_GS/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure-out.log")
-set(stderr_log "C:/Shared_GS/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure-err.log")
+set(stdout_log "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure-out.log")
+set(stderr_log "/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure-err.log")
 execute_process(
   COMMAND ${command}
   RESULT_VARIABLE result
@@ -31,7 +31,7 @@ if(result)
   if (${log_merged})
     set(msg "${msg}\nSee also\n  ${stderr_log}")
   else()
-    set(msg "${msg}\nSee also\n  C:/Shared_GS/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure-*.log")
+    set(msg "${msg}\nSee also\n  /Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure-*.log")
   endif()
   if (${log_output_on_failure})
     message(SEND_ERROR "${msg}")
@@ -50,7 +50,7 @@ if(result)
   endif()
 else()
   if(NOT "Ninja" MATCHES "Ninja")
-    set(msg "Aufgabe1.Debug+ITSboard configure command succeeded.  See also C:/Shared_GS/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure-*.log")
+    set(msg "Aufgabe1.Debug+ITSboard configure command succeeded.  See also /Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure-*.log")
     message(STATUS "${msg}")
   endif()
 endif()
