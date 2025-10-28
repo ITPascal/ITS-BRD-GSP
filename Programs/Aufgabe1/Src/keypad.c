@@ -1,11 +1,28 @@
+#include "arith_lib.h"
 #include <display.h>
 #include <scanner.h>
 #include <token.h>
 #include <stack.h>
-
-int prependNumber(int addVal);
+#include <keypad.h>
 
 T_token lastInput = {0}; // enthält den letzten Input
+
+
+/*
+    @brief  Fügt addVal links an die erste int auf dem Stack an
+
+    @param addVal   einstelliger positiver int-Wert
+
+*/
+int prependNumber(int addVal) {
+    int stackVal = 0;
+
+    if(stack_pop(&stackVal) != -1){
+
+        int result = stackVal * 10 + addVal;
+
+    }
+}
 
 /*
     @brief Ruft je nach Tokentyp und altem token passende Operation aus
@@ -24,17 +41,21 @@ int processInput(T_token input) {
             }
             break;
         case PLUS:
-            
+            addition();
             break;
         case MINUS: 
+            subtraction();
             break;
-        case MULT: 
+        case MULT:
+            multiplication();
             break;
         case DIV: 
+            division();
             break;        
-        case PRT: 
+        case PRT:
+            printFirst(); 
             break;
-        case SWAP: 
+        case SWAP:
             break;
         case PRT_ALL:
             break;
@@ -52,27 +73,5 @@ int processInput(T_token input) {
             break;
     }
     lastInput = input;
-    return 0;
-}
-/*
-    @brief  Fügt addVal links an die erste int auf dem Stack an
-
-    @param addVal   einstelliger positiver int-Wert
-
-*/
-int prependNumber(int addVal) {
-    int reqArity = 0;
-    int stackVal = 0;
-    if (stack_pop(&stackVal) != -1) {
-        reqArity = 1;
-        for(int i = stackVal; i>0;i/=10) {
-            reqArity++;
-        }
-        int result = stackVal+(reqArity*addVal);
-        stack_push(result);
-    }
-    else {
-        return -1;
-    }
     return 0;
 }

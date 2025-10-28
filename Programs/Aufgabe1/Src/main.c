@@ -25,9 +25,8 @@
 
 int main(void) {
 	initITSboard();    // Initialisierung des ITS Boards
-	initDisplay();		//Initialisierung der Taschenrechner GUIs
-	TP_Init(false);                 // Initialisierung des LCD Boards mit Touch
-	
+	initDisplay();	   // Initialisierung der Taschenrechner GUIs
+	TP_Init(false);    // Initialisierung des LCD Boards mit Touch
 
 	// Test in Endlosschleife
 	while(1) {

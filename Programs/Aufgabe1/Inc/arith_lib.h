@@ -84,5 +84,6 @@ int duplicate();
  ****************************************************************************************/
 
 int swapEntries();
+int determineArity(int* number);
 
 #endif
