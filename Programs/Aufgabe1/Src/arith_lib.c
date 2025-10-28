@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 #define NUMTOCHAR 30
+#define PREFIXSLOT 1
 /* 
  *  @brief  This auxiliary function returns the arity of value
  *
@@ -14,13 +15,13 @@
  *  @return -1 if nullpointer is passed. otherwise 0
  *
 */
-int determineArity(int* number) {
+int determineArity(int* valuePointer, int* result) {
 
-    if (number == NULL) {
+    if (valuePointer == NULL) {
         return -1;
     }
 
-    int value = *number;
+    int value = *valuePointer;
     int arity = 0;
 
     if(value < 0){
@@ -31,7 +32,7 @@ int determineArity(int* number) {
         arity++;
     }
 
-    *number = arity;
+    *result = arity;
 
     return 0;
 }
@@ -147,25 +148,28 @@ int multiplication() {
 
  }
 int printFirst(){
-    int value = 0;
+    int stackValue = 0;
 
-    if(stack_pop(&value) != 0){
+    if(stack_pop(&stackValue) != 0){
         return -1;
     }
 
-    stack_push(value);
+    if (stack_push(stackValue)) {
+        return -1;
+    }
+    int arity;
+    determineArity(&stackValue, &arity);
 
-    char str[12];
+    int length = (stackValue > 0) ? arity : (PREFIXSLOT + arity);
+    char intString[length];
     
-    //TODO
-    
+    intToString(intString, stackValue, arity);
+    printStdout(intString);
 
     return 0;
 }
-
-
     int printAll(){
-        //TODO
+        
 
         return 0;
     }

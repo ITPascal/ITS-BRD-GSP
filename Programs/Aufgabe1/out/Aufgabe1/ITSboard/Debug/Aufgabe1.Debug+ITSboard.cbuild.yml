@@ -333,8 +333,6 @@ build:
           category: header
         - file: ../../../../Inc/stack.h
           category: header
-        - file: ../../../../Inc/keypad.h
-          category: header
         - file: ../../../../Inc/arith_lib.h
           category: header
     - group: Program/User/Src
@@ -346,8 +344,6 @@ build:
         - file: ../../../../Src/scanner.c
           category: sourceC
         - file: ../../../../Src/stack.c
-          category: sourceC
-        - file: ../../../../Src/keypad.c
           category: sourceC
         - file: ../../../../Src/arith_lib.c
           category: sourceC
