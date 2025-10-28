@@ -152,7 +152,7 @@ project:
         - file: Inc/token.h
         - file: Inc/stack.h
         - file: Inc/keypad.h
-        - file: Inc/calculator.h
+        - file: Inc/arith_lib.h
     - group: Program/User/Src
       files:
         - file: Src/main.c
@@ -160,6 +160,6 @@ project:
         - file: Src/scanner.c
         - file: Src/stack.c
         - file: Src/keypad.c
-        - file: Src/calculator.c
+        - file: Src/arith_lib.c
   components:
     - component: ARM::CMSIS:CORE

@@ -1475,22 +1475,23 @@ Section Cross References
     keypad.o(.text.prependNumber) refers to stack.o(.text.stack_pop) for stack_pop
     keypad.o(.text.prependNumber) refers to stack.o(.text.stack_push) for stack_push
     keypad.o(.ARM.exidx.text.prependNumber) refers to keypad.o(.text.prependNumber) for [Anonymous Symbol]
-    calculator.o(.text.intToString) refers to dflti.o(.text) for __aeabi_i2d
-    calculator.o(.text.intToString) refers to pow.o(i.__hardfp_pow) for __hardfp_pow
-    calculator.o(.text.intToString) refers to dfixi.o(.text) for __aeabi_d2iz
-    calculator.o(.ARM.exidx.text.intToString) refers to calculator.o(.text.intToString) for [Anonymous Symbol]
-    calculator.o(.text.addition) refers to stack.o(.text.stack_pop) for stack_pop
-    calculator.o(.text.addition) refers to stack.o(.text.stack_push) for stack_push
-    calculator.o(.ARM.exidx.text.addition) refers to calculator.o(.text.addition) for [Anonymous Symbol]
-    calculator.o(.text.subtraction) refers to stack.o(.text.stack_pop) for stack_pop
-    calculator.o(.text.subtraction) refers to stack.o(.text.stack_push) for stack_push
-    calculator.o(.ARM.exidx.text.subtraction) refers to calculator.o(.text.subtraction) for [Anonymous Symbol]
-    calculator.o(.text.multiplication) refers to stack.o(.text.stack_pop) for stack_pop
-    calculator.o(.text.multiplication) refers to stack.o(.text.stack_push) for stack_push
-    calculator.o(.ARM.exidx.text.multiplication) refers to calculator.o(.text.multiplication) for [Anonymous Symbol]
-    calculator.o(.text.division) refers to stack.o(.text.stack_pop) for stack_pop
-    calculator.o(.text.division) refers to stack.o(.text.stack_push) for stack_push
-    calculator.o(.ARM.exidx.text.division) refers to calculator.o(.text.division) for [Anonymous Symbol]
+    arith_lib.o(.ARM.exidx.text.determineArity) refers to arith_lib.o(.text.determineArity) for [Anonymous Symbol]
+    arith_lib.o(.text.intToString) refers to dflti.o(.text) for __aeabi_i2d
+    arith_lib.o(.text.intToString) refers to pow.o(i.__hardfp_pow) for __hardfp_pow
+    arith_lib.o(.text.intToString) refers to dfixi.o(.text) for __aeabi_d2iz
+    arith_lib.o(.ARM.exidx.text.intToString) refers to arith_lib.o(.text.intToString) for [Anonymous Symbol]
+    arith_lib.o(.text.addition) refers to stack.o(.text.stack_pop) for stack_pop
+    arith_lib.o(.text.addition) refers to stack.o(.text.stack_push) for stack_push
+    arith_lib.o(.ARM.exidx.text.addition) refers to arith_lib.o(.text.addition) for [Anonymous Symbol]
+    arith_lib.o(.text.subtraction) refers to stack.o(.text.stack_pop) for stack_pop
+    arith_lib.o(.text.subtraction) refers to stack.o(.text.stack_push) for stack_push
+    arith_lib.o(.ARM.exidx.text.subtraction) refers to arith_lib.o(.text.subtraction) for [Anonymous Symbol]
+    arith_lib.o(.text.multiplication) refers to stack.o(.text.stack_pop) for stack_pop
+    arith_lib.o(.text.multiplication) refers to stack.o(.text.stack_push) for stack_push
+    arith_lib.o(.ARM.exidx.text.multiplication) refers to arith_lib.o(.text.multiplication) for [Anonymous Symbol]
+    arith_lib.o(.text.division) refers to stack.o(.text.stack_pop) for stack_pop
+    arith_lib.o(.text.division) refers to stack.o(.text.stack_push) for stack_push
+    arith_lib.o(.ARM.exidx.text.division) refers to arith_lib.o(.text.division) for [Anonymous Symbol]
     pow.o(i.__hardfp_pow) refers (Special) to iusefp.o(.text) for __I$use$fp
     pow.o(i.__hardfp_pow) refers to dunder.o(i.__mathlib_dbl_infnan2) for __mathlib_dbl_infnan2
     pow.o(i.__hardfp_pow) refers to errno.o(i.__set_errno) for __set_errno
@@ -2757,17 +2758,19 @@ Removing Unused input sections from the image.
     Removing keypad.o(.text.prependNumber), (114 bytes).
     Removing keypad.o(.ARM.exidx.text.prependNumber), (8 bytes).
     Removing keypad.o(.bss.lastInput), (8 bytes).
-    Removing calculator.o(.text), (0 bytes).
-    Removing calculator.o(.text.intToString), (288 bytes).
-    Removing calculator.o(.ARM.exidx.text.intToString), (8 bytes).
-    Removing calculator.o(.text.addition), (70 bytes).
-    Removing calculator.o(.ARM.exidx.text.addition), (8 bytes).
-    Removing calculator.o(.text.subtraction), (70 bytes).
-    Removing calculator.o(.ARM.exidx.text.subtraction), (8 bytes).
-    Removing calculator.o(.text.multiplication), (70 bytes).
-    Removing calculator.o(.ARM.exidx.text.multiplication), (8 bytes).
-    Removing calculator.o(.text.division), (72 bytes).
-    Removing calculator.o(.ARM.exidx.text.division), (8 bytes).
+    Removing arith_lib.o(.text), (0 bytes).
+    Removing arith_lib.o(.text.determineArity), (120 bytes).
+    Removing arith_lib.o(.ARM.exidx.text.determineArity), (8 bytes).
+    Removing arith_lib.o(.text.intToString), (168 bytes).
+    Removing arith_lib.o(.ARM.exidx.text.intToString), (8 bytes).
+    Removing arith_lib.o(.text.addition), (70 bytes).
+    Removing arith_lib.o(.ARM.exidx.text.addition), (8 bytes).
+    Removing arith_lib.o(.text.subtraction), (70 bytes).
+    Removing arith_lib.o(.ARM.exidx.text.subtraction), (8 bytes).
+    Removing arith_lib.o(.text.multiplication), (70 bytes).
+    Removing arith_lib.o(.ARM.exidx.text.multiplication), (8 bytes).
+    Removing arith_lib.o(.text.division), (72 bytes).
+    Removing arith_lib.o(.ARM.exidx.text.division), (8 bytes).
     Removing dflti.o(.text), (34 bytes).
     Removing dfltui.o(.text), (26 bytes).
     Removing dfixi.o(.text), (62 bytes).
@@ -2781,7 +2784,7 @@ Removing Unused input sections from the image.
     Removing dfixul.o(.text), (48 bytes).
     Removing cdrcmple.o(.text), (48 bytes).
 
-1141 unused section(s) (total 784493 bytes) removed from the image.
+1143 unused section(s) (total 784501 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2869,7 +2872,7 @@ Image Symbol Table
     LCD_Tools.c                              0x00000000   Number         0  LCD_Tools.o ABSOLUTE
     LCD_Touch.c                              0x00000000   Number         0  LCD_Touch.o ABSOLUTE
     USART_STM32F4xx.c                        0x00000000   Number         0  USART_STM32F4xx.o ABSOLUTE
-    calculator.c                             0x00000000   Number         0  calculator.o ABSOLUTE
+    arith_lib.c                              0x00000000   Number         0  arith_lib.o ABSOLUTE
     cdrcmple.s                               0x00000000   Number         0  cdrcmple.o ABSOLUTE
     dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
     delay.c                                  0x00000000   Number         0  delay.o ABSOLUTE
@@ -3456,23 +3459,23 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x000001ac   Data   RO           63    RESET               startup_stm32f429xx.o
-    0x080001ac   0x080001ac   0x00000000   Code   RO         1678  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080001ac   0x080001ac   0x00000004   Code   RO         1748    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080001b0   0x080001b0   0x00000004   Code   RO         1751    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080001b4   0x080001b4   0x00000000   Code   RO         1753    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080001b4   0x080001b4   0x00000000   Code   RO         1755    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080001b4   0x080001b4   0x00000008   Code   RO         1756    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080001bc   0x080001bc   0x00000000   Code   RO         1758    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080001bc   0x080001bc   0x00000000   Code   RO         1760    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080001bc   0x080001bc   0x00000004   Code   RO         1749    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080001ac   0x080001ac   0x00000000   Code   RO         1679  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080001ac   0x080001ac   0x00000004   Code   RO         1749    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080001b0   0x080001b0   0x00000004   Code   RO         1752    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080001b4   0x080001b4   0x00000000   Code   RO         1754    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080001b4   0x080001b4   0x00000000   Code   RO         1756    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080001b4   0x080001b4   0x00000008   Code   RO         1757    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080001bc   0x080001bc   0x00000000   Code   RO         1759    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080001bc   0x080001bc   0x00000000   Code   RO         1761    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080001bc   0x080001bc   0x00000004   Code   RO         1750    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x080001c0   0x080001c0   0x00000024   Code   RO           64  * .text               startup_stm32f429xx.o
-    0x080001e4   0x080001e4   0x00000062   Code   RO         1681    .text               mc_w.l(uldiv.o)
-    0x08000246   0x08000246   0x00000062   Code   RO         1683    .text               mc_w.l(ldiv.o)
-    0x080002a8   0x080002a8   0x00000024   Code   RO         1685    .text               mc_w.l(memseta.o)
-    0x080002cc   0x080002cc   0x0000000e   Code   RO         1687    .text               mc_w.l(strlen.o)
-    0x080002da   0x080002da   0x0000001e   Code   RO         1778    .text               mc_w.l(llshl.o)
-    0x080002f8   0x080002f8   0x00000020   Code   RO         1780    .text               mc_w.l(llushr.o)
-    0x08000318   0x08000318   0x00000030   Code   RO         1808    .text               mc_w.l(init.o)
+    0x080001e4   0x080001e4   0x00000062   Code   RO         1682    .text               mc_w.l(uldiv.o)
+    0x08000246   0x08000246   0x00000062   Code   RO         1684    .text               mc_w.l(ldiv.o)
+    0x080002a8   0x080002a8   0x00000024   Code   RO         1686    .text               mc_w.l(memseta.o)
+    0x080002cc   0x080002cc   0x0000000e   Code   RO         1688    .text               mc_w.l(strlen.o)
+    0x080002da   0x080002da   0x0000001e   Code   RO         1779    .text               mc_w.l(llshl.o)
+    0x080002f8   0x080002f8   0x00000020   Code   RO         1781    .text               mc_w.l(llushr.o)
+    0x08000318   0x08000318   0x00000030   Code   RO         1809    .text               mc_w.l(init.o)
     0x08000348   0x08000348   0x00000004   Code   RO           91    .text.BusFault_Handler  stm32f4xx_it.o
     0x0800034c   0x0800034c   0x00000002   Code   RO           97    .text.DebugMon_Handler  stm32f4xx_it.o
     0x0800034e   0x0800034e   0x00000002   PAD
@@ -3696,9 +3699,9 @@ Memory Map of the image
     0x08006924   0x08006924   0x00000046   Code   RO         1369    .text.stringCopy    lcd.o
     0x0800696a   0x0800696a   0x00000002   PAD
     0x0800696c   0x0800696c   0x000000ea   Code   RO         1453    .text.touchCoordinateToKey  keypad.o
-    0x08006a56   0x08006a56   0x0000000e   Code   RO         1816    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08006a64   0x08006a64   0x00000002   Code   RO         1817    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08006a66   0x08006a66   0x0000000e   Code   RO         1818    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08006a56   0x08006a56   0x0000000e   Code   RO         1817    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08006a64   0x08006a64   0x00000002   Code   RO         1818    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08006a66   0x08006a66   0x0000000e   Code   RO         1819    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x08006a74   0x08006a74   0x00000010   Data   RO           76    .rodata.AHBPrescTable  system_stm32f4xx.o
     0x08006a84   0x08006a84   0x00000008   Data   RO           77    .rodata.APBPrescTable  system_stm32f4xx.o
     0x08006a8c   0x08006a8c   0x00000038   Data   RO         1548    .rodata.Driver_USART3  USART_STM32F4xx.o
@@ -3714,7 +3717,7 @@ Memory Map of the image
     0x08006dca   0x08006dca   0x0000001c   Data   RO         1336    .rodata.str1.1      LCD_Debug.o
     0x08006de6   0x08006de6   0x00000054   Data   RO         1432    .rodata.str1.1      terminal.o
     0x08006e3a   0x08006e3a   0x00000002   PAD
-    0x08006e3c   0x08006e3c   0x00000020   Data   RO         1815    Region$$Table       anon$$obj.o
+    0x08006e3c   0x08006e3c   0x00000020   Data   RO         1816    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08006e60, Size: 0x00000548, Max: 0x00030000, ABSOLUTE)
