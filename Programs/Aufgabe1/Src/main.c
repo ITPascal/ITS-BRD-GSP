@@ -40,6 +40,7 @@ int postpendNumber(int addVal) {
 	}
 
 	int result = stackVal * 10 + addVal;
+	return 0;
 }
 
 int main(void) {

@@ -210,6 +210,7 @@ add_library(Group_Program_User_Src OBJECT
   "${SOLUTION_ROOT}/Src/scanner.c"
   "${SOLUTION_ROOT}/Src/stack.c"
   "${SOLUTION_ROOT}/Src/arith_lib.c"
+  "${SOLUTION_ROOT}/Src/error.c"
 )
 target_include_directories(Group_Program_User_Src PUBLIC
   $<TARGET_PROPERTY:${CONTEXT},INTERFACE_INCLUDE_DIRECTORIES>

@@ -335,6 +335,8 @@ build:
           category: header
         - file: ../../../../Inc/arith_lib.h
           category: header
+        - file: ../../../../Inc/error.h
+          category: header
     - group: Program/User/Src
       files:
         - file: ../../../../Src/main.c
@@ -346,6 +348,8 @@ build:
         - file: ../../../../Src/stack.c
           category: sourceC
         - file: ../../../../Src/arith_lib.c
+          category: sourceC
+        - file: ../../../../Src/error.c
           category: sourceC
   constructed-files:
     - file: ../../../../RTE/_Debug_ITSboard/RTE_Components.h

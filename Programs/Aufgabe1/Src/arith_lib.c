@@ -85,10 +85,11 @@ int addition() {
         stack_push(result);
         return 0;
     } else {
-        return -1;
+        return -1;                  // Fehlerbehandlung ergänzen, wenn Stack leer ist.
     }
 
 }
+
 int subtraction() {
 
     int e1 = 0;
@@ -102,7 +103,7 @@ int subtraction() {
         stack_push(result);
         return 0;
     } else {
-        return 1;
+        return -1;                  // Fehlerbehandlung ergänzen, wenn Stack leer ist.
     }
 
 }
@@ -123,7 +124,7 @@ int multiplication() {
 
         return 0;
     } else {
-        return -1;
+        return -1;                  // Fehlerbehandlung ergänzen, wenn Stack leer ist.
     }
 
 }
@@ -143,10 +144,11 @@ int multiplication() {
 
         return 0;
     } else {
-        return -1;
+        return -1;                  // Fehlerbehandlung ergänzen, wenn Stack leer ist.
     }
 
  }
+
 int printFirst(){
     int stackValue = 0;
 
@@ -157,7 +159,9 @@ int printFirst(){
     if (stack_push(stackValue)) {
         return -1;
     }
+
     int arity;
+
     determineArity(&stackValue, &arity);
 
     int length = (stackValue > 0) ? arity : (PREFIXSLOT + arity);
@@ -168,11 +172,12 @@ int printFirst(){
 
     return 0;
 }
-    int printAll(){
-        
 
-        return 0;
-    }
+int printAll(){
+    
+
+    return 0;
+}
 
 int clearStack();
 int duplicate();

@@ -152,6 +152,7 @@ project:
         - file: Inc/token.h
         - file: Inc/stack.h
         - file: Inc/arith_lib.h
+        - file: Inc/error.h
     - group: Program/User/Src
       files:
         - file: Src/main.c
@@ -159,5 +160,6 @@ project:
         - file: Src/scanner.c
         - file: Src/stack.c
         - file: Src/arith_lib.c
+        - file: Src/error.c
   components:
     - component: ARM::CMSIS:CORE
