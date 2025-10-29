@@ -1,13 +1,15 @@
 # ninja log v6
-17	33	1761754753237409077	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-download	94e59c9ea23a3456
-65	862	1761754754066151374	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure	942a6dd199fdece8
-1	17	1761754753221670026	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-mkdir	85f61877c8e284a
-1	17	1761754753221670026	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-mkdir	85f61877c8e284a
-33	49	1761754753252854835	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-update	e9556fd45f2506f2
-17	33	1761754753237409077	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-download	94e59c9ea23a3456
-65	862	1761754754066151374	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure	942a6dd199fdece8
-33	49	1761754753252854835	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-update	e9556fd45f2506f2
-49	65	1761754753269659886	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-patch	4dbaab85a1c101c6
-1	405	1761755661359108511	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-database	5d16b8c261be53ae
-49	65	1761754753269659886	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-patch	4dbaab85a1c101c6
 1	405	1761755661359108511	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-database	5d16b8c261be53ae
+49	65	1761754753269659886	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-patch	4dbaab85a1c101c6
+1	405	1761755661359108511	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-database	5d16b8c261be53ae
+49	65	1761754753269659886	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-patch	4dbaab85a1c101c6
+33	49	1761754753252854835	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-update	e9556fd45f2506f2
+65	862	1761754754066151374	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure	942a6dd199fdece8
+17	33	1761754753237409077	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-download	94e59c9ea23a3456
+33	49	1761754753252854835	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-update	e9556fd45f2506f2
+1	17	1761754753221670026	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-mkdir	85f61877c8e284a
+1	17	1761754753221670026	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-mkdir	85f61877c8e284a
+65	862	1761754754066151374	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-configure	942a6dd199fdece8
+17	33	1761754753237409077	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-download	94e59c9ea23a3456
+1	65	1761760148704255591	Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-database	5d16b8c261be53ae
+1	65	1761760148704255591	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard/src/Aufgabe1.Debug+ITSboard-stamp/Aufgabe1.Debug+ITSboard-database	5d16b8c261be53ae

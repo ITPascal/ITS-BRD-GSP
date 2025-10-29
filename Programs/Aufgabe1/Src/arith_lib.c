@@ -77,17 +77,13 @@ int addition() {
     int e1 = 0;
     int e2 = 0;
     
-    stack_pop(&e1);
-    stack_pop(&e2);
-    
-    if (e1 != -1 && e2 != -1) {
-        int result = e1+e2;
-        stack_push(result);
-        return 0;
-    } else {
-        return -1;                  // Fehlerbehandlung ergänzen, wenn Stack leer ist.
+    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0) {
+        return -1;
     }
 
+    int result = e1 + e2;
+    stack_push(result);
+    return 0;
 }
 
 int subtraction() {
@@ -95,16 +91,13 @@ int subtraction() {
     int e1 = 0;
     int e2 = 0;
     
-    stack_pop(&e1);
-    stack_pop(&e2);
-    
-    if (e1 != -1 && e2 != -1) {
-        int result = e2-e1;
-        stack_push(result);
-        return 0;
-    } else {
-        return -1;                  // Fehlerbehandlung ergänzen, wenn Stack leer ist.
+    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0){
+        return -1;
     }
+
+    int result = e2 - e1;
+    stack_push(result);
+    return 0;
 
 }
 
@@ -113,19 +106,13 @@ int multiplication() {
     int e1 = 0;
     int e2 = 0;
     
-    stack_pop(&e1);
-    stack_pop(&e2);
-    
-    if (e1 != -1 && e2 != -1) {
-
-        int result = e1*e2;
-
-        stack_push(result);
-
-        return 0;
-    } else {
-        return -1;                  // Fehlerbehandlung ergänzen, wenn Stack leer ist.
+    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0){
+        return -1;
     }
+
+    int result = e1 * e2;
+    stack_push(result);
+    return 0;
 
 }
  int division() {
@@ -133,20 +120,13 @@ int multiplication() {
     int e1 = 0;
     int e2 = 0;
     
-    stack_pop(&e1);
-    stack_pop(&e2);
-    
-    if (e1 != -1 && e2 != -1) {
-
-        int result = e2/e1;
-
-        stack_push(result);
-
-        return 0;
-    } else {
-        return -1;                  // Fehlerbehandlung ergänzen, wenn Stack leer ist.
+    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0){
+        return -1;
     }
 
+    int result = e1 / e2;
+    stack_push(result);
+    return 0;
  }
 
 int printFirst(){
@@ -174,7 +154,7 @@ int printFirst(){
 }
 
 int printAll(){
-    
+
 
     return 0;
 }
