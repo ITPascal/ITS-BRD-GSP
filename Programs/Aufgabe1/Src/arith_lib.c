@@ -15,7 +15,7 @@
  *  @return -1 if nullpointer is passed. otherwise 0
  *
 */
-int determineArity(int* valuePointer, int* result) {
+int determineArity(int *valuePointer, int *result) {
 
     if (valuePointer == NULL) {
         return -1;
@@ -72,7 +72,7 @@ int intToString (char *result, int value, int arity){
 
 }
 
-int addition() {
+int addition(void) {
 
     int e1 = 0;
     int e2 = 0;
@@ -86,7 +86,7 @@ int addition() {
     return 0;
 }
 
-int subtraction() {
+int subtraction(void) {
 
     int e1 = 0;
     int e2 = 0;
@@ -101,7 +101,7 @@ int subtraction() {
 
 }
 
-int multiplication() {
+int multiplication(void) {
 
     int e1 = 0;
     int e2 = 0;
@@ -115,7 +115,7 @@ int multiplication() {
     return 0;
 
 }
- int division() {
+ int division(void) {
 
     int e1 = 0;
     int e2 = 0;
@@ -129,7 +129,7 @@ int multiplication() {
     return 0;
  }
 
-int printFirst(){
+int printFirst(void){
     int stackValue = 0;
 
     if(stack_pop(&stackValue) != 0){
@@ -153,13 +153,13 @@ int printFirst(){
     return 0;
 }
 
-int printAll(){
+int printAll(void){
 
 
     return 0;
 }
 
-int clearStack();
-int duplicate();
-int swapEntries();
+int clearStack(void);
+int duplicate(void);
+int swapEntries(void);
 

@@ -8,7 +8,7 @@
  * @return 0 is returned in case of success. In case of an error the 1 will
  *         be returned.
  ****************************************************************************************/
-int addition();
+int addition(void);
 /*
  ****************************************************************************************
  * @brief : This function takes the first 2 entries from the stack, subtracts the second 
@@ -18,7 +18,7 @@ int addition();
  *         be returned.
  ****************************************************************************************/
 
-int subtraction();
+int subtraction(void);
 /*
  ****************************************************************************************
  * @brief : This function takes the first 2 entries from the stack, multiplies them and 
@@ -27,7 +27,7 @@ int subtraction();
  * @return 0 is returned in case of success. In case of an error the 1 will
  *         be returned.
  ****************************************************************************************/
-int multiplication();
+int multiplication(void);
 /*
  ****************************************************************************************
  * @brief : This function takes the first 2 entries from the stack, divides the first by 
@@ -37,7 +37,7 @@ int multiplication();
  *         be returned.
  ****************************************************************************************/
 
- int division();
+ int division(void);
 /*
  ****************************************************************************************
  * @brief : This function prints the first entry on the stack. The entry remains on the stack
@@ -55,7 +55,7 @@ int printFirst();
  *         be returned.
  ****************************************************************************************/
 
-int printAll();
+int printAll(void);
 /*
  ****************************************************************************************
  * @brief : This function removes all entries from the stack and sets its size to 0
@@ -64,7 +64,7 @@ int printAll();
  *         be returned.
  ****************************************************************************************/
 
-int clearStack();
+int clearStack(void);
 /*
  ****************************************************************************************
  * @brief : This function duplicates the first element on the stack and puts the duplicate 
@@ -74,7 +74,7 @@ int clearStack();
  *         be returned.
  ****************************************************************************************/
 
-int duplicate();
+int duplicate(void);
 /*
  ****************************************************************************************
  * @brief : This function swaps the first and second entries position on the stack
@@ -83,5 +83,6 @@ int duplicate();
  *         be returned.
  ****************************************************************************************/
 
-int swapEntries();
+int swapEntries(void);
+
 #endif
