@@ -7,8 +7,9 @@
 
 #define NUMTOCHAR 30
 #define PREFIXSLOT 1
+
 /* 
- *  @brief  This auxiliary function returns the arity of value
+ *  @brief  This auxiliary function returns the number of the value
  *
  *  @param  value   checked value
  *
@@ -130,7 +131,8 @@ int multiplication() {
  }
 
 int printFirst(){
-    int stackValue = 0;
+
+    int stackValue;
 
     if(stack_pop(&stackValue) != 0){
         return -1;
