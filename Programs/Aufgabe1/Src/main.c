@@ -80,16 +80,16 @@ int main(void) {
 				printFirst(); 
 				break;
 			case SWAP:
-				swapEntries();
+				//swapEntries();
 				break;
 			case PRT_ALL:
-				printAll();
+				//printAll();
 				break;
 			case CLEAR:
-				clearStack();
+				//clearStack();
 				break;
 			case DOUBLE:
-				duplicate();
+				//duplicate();
 				break;
 			case ENTER: 
 				//nothing

@@ -158,8 +158,8 @@ int printAll(){
 
     return 0;
 }
-
+/** 
 int clearStack();
 int duplicate();
 int swapEntries();
-
+*/
