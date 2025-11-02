@@ -67,23 +67,33 @@ int main(void) {
 				break;
 			case PLUS:
 				result = addition();
-				errorHandle(result);
+				if(result != 0){
+					errorHandle(result);
+				}
 				break;
 			case MINUS: 
 				result = subtraction();
-				errorHandle(result);
+				if(result != 0){
+					errorHandle(result);
+				}
 				break;
 			case MULT:
 				result = multiplication();
-				errorHandle(result);
+				if(result != 0){
+					errorHandle(result);
+				}
 				break;
 			case DIV: 
 				result = division();
-				errorHandle(result);
+				if(result != 0){
+					errorHandle(result);
+				}
 				break;        
 			case PRT:
 				result = printFirst(); 
-				errorHandle(result);
+				if(result != 0){
+					errorHandle(result);
+				}
 				break;
 			case SWAP:
 				swapEntries();
