@@ -2,7 +2,7 @@
 #define ERROR_H
 
 
-
+void errorHandle();
 
 
 
