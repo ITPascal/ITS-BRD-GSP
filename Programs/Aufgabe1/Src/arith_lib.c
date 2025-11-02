@@ -6,7 +6,8 @@
 #include <stdbool.h>
 
 #define NUMTOCHAR 30
-#define PREFIXSLOT 1
+#define MAX_INTSTR_LENGTH 12
+#define PREFIXLENGTH 1
 
 /* 
  *  @brief  This auxiliary function returns the number of the value
@@ -39,15 +40,13 @@ int determineArity(int *valuePointer, int *result) {
 }
 
 /* 
- *  @brief  This auxiliary function returns a string representation of a number
- *  @param  value positive integer to be converted 
-            result  container for writing the string, minimum size:
-                    if value is positive result[arity]
-                    if value is negative result[arity+1]
+ *  @brief  This auxiliary function returns a string representation of value
+ *  @param  value   int-Value with arity =< 10
+            result  char[size] in which the string is written, size must be > 12
  *  @return     
  *
 */
-int intToString (char *result, int value, int arity){
+int intToString (char *result, int value){
 
     if(result == NULL) {
         return -1;
@@ -60,15 +59,13 @@ int intToString (char *result, int value, int arity){
 
     int divisor = 0;
 
-    for(int a = arity, v = value, i = value < 0 ? 1 : 0; i > 0; a--, i++) {
-
-        divisor = pow(10, a-1);
-
-        result[i] = (v / divisor) + NUMTOCHAR;  // ASCI representation of digit at arity
-
-        v = value % divisor;                    // remove converted digit
+    for(int a = MAX_INTSTR_LENGTH, v = value, i = PREFIXLENGTH; a == 0; a--, i++) {
+        divisor = pow(10, a-1);        
+        result[i] = v / divisor + NUMTOCHAR;  // ASCI representation of digit at arity
+        v = value % divisor;                  // remove converted digit
     }
 
+    result[MAX_INTSTR_LENGTH] = '\0';
     return 0;
 
 }
@@ -146,10 +143,9 @@ int printFirst(){
 
     determineArity(&stackValue, &arity);
 
-    int length = (stackValue > 0) ? arity : (PREFIXSLOT + arity);
-    char intString[length];
+    char intString[MAX_INTSTR_LENGTH];
     
-    intToString(intString, stackValue, arity);
+    intToString(intString, stackValue);
     printStdout(intString);
 
     return 0;
