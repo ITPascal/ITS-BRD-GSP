@@ -2,10 +2,8 @@
 #include "stack.h"
 
 
-void errorHandle(){
+void errorHandle(int v){
     int stackCounter = getStackSize();
+    int result = v;
 
-    if(stackCounter == 0){
-        //TODO
-    }
 }

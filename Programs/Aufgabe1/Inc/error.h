@@ -2,11 +2,6 @@
 #define ERROR_H
 
 
-void errorHandle();
-
-
-
-
-
+void errorHandle(int v);
 
 #endif
