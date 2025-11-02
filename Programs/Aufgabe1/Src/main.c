@@ -23,8 +23,6 @@
 #include <stdlib.h>
 #include "stack.h"
 #include "arith_lib.h"
-#include "error.h"
-
 /*
     @brief  Takes a number from the stack and puts the digit on the left
 
