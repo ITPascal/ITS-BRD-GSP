@@ -1,5 +1,6 @@
 # ninja log v6
-10	143	7834730297402851	CMakeFiles/database	3e630b2f6d29ab3c
-10	143	7834730297402851	C:/Shared_GS/Programs/Aufgabe1/tmp/1/CMakeFiles/database	3e630b2f6d29ab3c
-610	1077	7834766797762690	CMakeFiles/database	3e630b2f6d29ab3c
-610	1077	7834766797762690	C:/Shared_GS/Programs/Aufgabe1/tmp/1/CMakeFiles/database	3e630b2f6d29ab3c
+1	18	1762093522880235278	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/1/CMakeFiles/database	f30ad934119691ec
+1	18	1762093522880235278	CMakeFiles/database	f30ad934119691ec
+1	146	1762093537993903980	build.ninja	ebc3f49f8757f005
+1	21	1762093537998818465	CMakeFiles/database	f30ad934119691ec
+1	21	1762093537998818465	/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/1/CMakeFiles/database	f30ad934119691ec
