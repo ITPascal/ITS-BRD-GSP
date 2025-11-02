@@ -25,3 +25,7 @@ int stack_pop(int *v){
 
     return 0;
 }
+
+int getStackSize(){
+    return counter;
+}

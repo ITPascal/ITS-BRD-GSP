@@ -5,4 +5,6 @@ int stack_push(int v);
 
 int stack_pop(int *v);
 
+int getStackSize();
+
 #endif

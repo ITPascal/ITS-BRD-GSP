@@ -23,13 +23,14 @@
 #include <stdlib.h>
 #include "stack.h"
 #include "arith_lib.h"
-
 /*
     @brief  Takes a number from the stack and puts the digit on the left
 
     @param addVal	int containing a positive digit
 
 */
+static int result = 0;
+
 int postpendNumber(int addVal) {
 	if (addVal < 0) {
 		return -1;
@@ -65,19 +66,24 @@ int main(void) {
 				}
 				break;
 			case PLUS:
-				addition();
+				result = addition();
+				errorHandle(result);
 				break;
 			case MINUS: 
-				subtraction();
+				result = subtraction();
+				errorHandle(result);
 				break;
 			case MULT:
-				multiplication();
+				result = multiplication();
+				errorHandle(result);
 				break;
 			case DIV: 
-				division();
+				result = division();
+				errorHandle(result);
 				break;        
 			case PRT:
-				printFirst(); 
+				result = printFirst(); 
+				errorHandle(result);
 				break;
 			case SWAP:
 				swapEntries();
@@ -104,5 +110,8 @@ int main(void) {
     lastInput.tok = input.tok;
 	lastInput.val = input.val;
 	}
+
+
+
 }
 // EOF
