@@ -2,8 +2,8 @@
 
 #define STACK_SIZE 10
 
-int stack[STACK_SIZE];
-int counter = 0;
+static int stack[STACK_SIZE];
+static int counter = 0;
 
 int stack_push(int v){
     if(counter >= STACK_SIZE){
