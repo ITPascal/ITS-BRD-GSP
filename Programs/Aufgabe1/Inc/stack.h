@@ -5,6 +5,8 @@ int stack_push(int v);
 
 int stack_pop(int *v);
 
-int getStackSize();
+int getStackSize(void);
+
+int resetCounter(void);
 
 #endif

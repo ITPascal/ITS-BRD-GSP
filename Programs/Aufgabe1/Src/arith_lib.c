@@ -8,6 +8,8 @@
 #define NUMTOCHAR 30
 #define MAX_INTSTR_LENGTH 12
 #define PREFIXLENGTH 1
+#define STACK_SIZE 10
+
 
 /* 
  *  @brief  This auxiliary function returns the number of the value
@@ -17,7 +19,8 @@
  *  @return -1 if nullpointer is passed. otherwise 0
  *
 */
-int determineArity(int *valuePointer, int *result) {
+
+static int determineArity(int *valuePointer, int *result) {
 
     if (valuePointer == NULL) {
         return -1;
@@ -46,7 +49,7 @@ int determineArity(int *valuePointer, int *result) {
  *  @return     
  *
 */
-int intToString (char *result, int value){
+static int intToString (char *result, int value){
 
     if(result == NULL) {
         return -1;
@@ -75,12 +78,16 @@ int addition(void) {
     int e1 = 0;
     int e2 = 0;
     
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0) {
+    if (stack_pop(&e1) == -1 || stack_pop(&e2) == -1) {
         return -1;
     }
 
     int result = e1 + e2;
-    stack_push(result);
+
+    if (stack_push(result) == -1) {
+        return -1;
+    }
+
     return 0;
 }
 
@@ -89,12 +96,16 @@ int subtraction(void) {
     int e1 = 0;
     int e2 = 0;
     
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0){
+    if (stack_pop(&e1) == -1 || stack_pop(&e2) == -1){
         return -1;
     }
 
     int result = e2 - e1;
-    stack_push(result);
+
+    if (stack_push(result) == -1) {
+        return -1;
+    }
+
     return 0;
 
 }
@@ -104,12 +115,16 @@ int multiplication(void) {
     int e1 = 0;
     int e2 = 0;
     
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0){
+    if (stack_pop(&e1) == -1 || stack_pop(&e2) == -1){
         return -1;
     }
 
     int result = e1 * e2;
-    stack_push(result);
+
+    if (stack_push(result) == -1) {
+        return -1;
+    }
+
     return 0;
 
 }
@@ -118,12 +133,16 @@ int multiplication(void) {
     int e1 = 0;
     int e2 = 0;
     
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0){
+    if (stack_pop(&e1) == -1 || stack_pop(&e2) == -1){
         return -1;
     }
 
     int result = e1 / e2;
-    stack_push(result);
+
+    if (stack_push(result) == -1) {
+        return -1;
+    }
+
     return 0;
  }
 
@@ -139,10 +158,6 @@ int printFirst(){
         return -1;
     }
 
-    int arity;
-
-    determineArity(&stackValue, &arity);
-
     char intString[MAX_INTSTR_LENGTH];
     
     intToString(intString, stackValue);
@@ -153,11 +168,63 @@ int printFirst(){
 
 int printAll(void){
 
+    int stackContents[STACK_SIZE] = {0};
+    char intString[MAX_INTSTR_LENGTH];
+    int stackSize = getStackSize();
+
+    for(int i = stackSize; i>0; i--) {
+        stack_pop(&stackContents[i]);
+
+        intToString(intString, stackContents[i]);
+        printStdout(intString);
+    }
+
+    for(int i = 0; i < stackSize; i++) {
+        stack_push(stackContents[i]);
+    }
 
     return 0;
 }
 
-int clearStack(void);
-int duplicate(void);
-int swapEntries(void);
+int clearStack(void) {
+    resetCounter();
+}
+
+int duplicate(void) {
+    int stackValue;
+
+    if(stack_pop(&stackValue) != 0){
+        return -1;
+    }
+
+    if (stack_push(stackValue) == -1) {
+        return -1;
+    }
+
+    if (stack_push(stackValue) == -1) {
+        return -1;
+    }
+
+    return 0;
+}
+
+int swapEntries(void) {
+
+    int e1 = 0;
+    int e2 = 0;
+    
+    if (stack_pop(&e1) == -1 || stack_pop(&e2) == -1){
+        return -1;
+    }
+
+    if (stack_push(e2) == -1) {
+        return -1;
+    }
+
+    if (stack_push(e1) == -1) {
+        return -1;
+    }
+
+    return 0;
+}
 

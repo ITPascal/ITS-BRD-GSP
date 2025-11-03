@@ -92,7 +92,7 @@ int main(void) {
 				printAll();
 				break;
 			case CLEAR:
-				clearStack();
+				clear();
 				break;
 			case DOUBLE:
 				duplicate();

@@ -1,4 +1,5 @@
 #include "stack.h"
+#include "arith_lib.h"
 
 #define STACK_SIZE 10
 
@@ -26,6 +27,10 @@ int stack_pop(int *v){
     return 0;
 }
 
-int getStackSize(){
+int getStackSize(void){
     return counter;
+}
+
+int resetCounter(void) {
+    counter = 0;
 }
