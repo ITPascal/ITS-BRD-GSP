@@ -17,19 +17,18 @@
 #include "lcd.h"
 #include "fontsFLASH.h"
 #include "additionalFonts.h"
-#include "error.h"
 #include "token.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include "stack.h"
 #include "arith_lib.h"
+#include "error.h"
 /*
     @brief  Takes a number from the stack and puts the digit on the left
 
     @param addVal	int containing a positive digit
 
 */
-static int result = 0;
 
 int postpendNumber(int addVal) {
 	if (addVal < 0) {
@@ -50,6 +49,8 @@ int main(void) {
 	lastInput.tok = UNEXPECTED;
 	T_token input = {0};
 
+	int result = 0;
+
 	initITSboard();    // Initialisierung des ITS Boards
 	initDisplay();	   // Initialisierung der Taschenrechner GUIs
 	TP_Init(false);    // Initialisierung des LCD Boards mit Touch
@@ -68,31 +69,31 @@ int main(void) {
 			case PLUS:
 				result = addition();
 				if(result != 0){
-					errorHandle(result);
+					handleError(result);
 				}
 				break;
 			case MINUS: 
 				result = subtraction();
 				if(result != 0){
-					errorHandle(result);
+					handleError(result);
 				}
 				break;
 			case MULT:
 				result = multiplication();
 				if(result != 0){
-					errorHandle(result);
+					handleError(result);
 				}
 				break;
 			case DIV: 
 				result = division();
 				if(result != 0){
-					errorHandle(result);
+					handleError(result);
 				}
 				break;        
 			case PRT:
 				result = printFirst(); 
 				if(result != 0){
-					errorHandle(result);
+					handleError(result);
 				}
 				break;
 			case SWAP:
