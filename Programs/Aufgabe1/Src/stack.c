@@ -1,5 +1,5 @@
 #include "stack.h"
-#include "arith_lib.h"
+#include "error.h"
 
 #define STACK_SIZE 10
 
@@ -8,7 +8,7 @@ static int counter = 0;
 
 int stack_push(int v){
     if(counter >= STACK_SIZE){
-        return -1;
+        return ERR_OVERFLOW;
     }
 
     stack[counter++] = v;
@@ -19,7 +19,7 @@ int stack_push(int v){
 int stack_pop(int *v){
     
     if(counter <= 0){
-        return -1;
+        return ERR_UNDERFLOW;
     }
 
     *v = stack[--counter];
