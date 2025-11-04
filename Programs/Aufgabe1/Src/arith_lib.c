@@ -193,7 +193,8 @@ int printAll(void) {
   return 0;
 }
 
-int clearStack(void) { 
+int clearStack(void) {
+    resetStack(); 
     resetCounter();
     return 0;
 }

@@ -31,9 +31,12 @@ int getStackSize(void){
     return counter;
 }
 
-int resetCounter(void) {
+void resetStack(){
     for(int i = 0 ; i < STACK_SIZE; i++){
-        stack[i] = 0;
+    stack[i] = 0;
     }
+}
+
+int resetCounter(void) {
     counter = 0;
 }
