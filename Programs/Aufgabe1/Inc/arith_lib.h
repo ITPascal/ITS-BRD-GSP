@@ -64,7 +64,7 @@ int printAll(void);
  *         be returned.
  ****************************************************************************************/
 
-int clear(void);
+int clearStack(void);
 /*
  ****************************************************************************************
  * @brief : This function duplicates the first element on the stack and puts the duplicate 
