@@ -100,7 +100,10 @@ int main(void) {
 				clearStack();
 				break;
 			case DOUBLE:
-				duplicate();
+				result = duplicate();
+				if(result != 0){
+					handleError(result);
+				}
 				break;
 			case ENTER: 
 				//nothing
