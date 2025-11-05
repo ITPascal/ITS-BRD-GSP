@@ -20,8 +20,8 @@
   * @retval None
   */
 
-#ifndef _ERROR_H
-#define	_ERROR_H
+#ifndef _FEHLERBEHANDLUNG_H
+#define	_FEHLERBEHANDLUNG_H
 
 #define ERR_OVERFLOW   -1
 #define ERR_UNDERFLOW  -2

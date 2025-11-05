@@ -8,21 +8,15 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "display.h"
-#include "keypad.h"
 #include "scanner.h"
-#include "stm32f4xx_hal.h"
 #include "init.h"
-#include "LCD_GUI.h"
 #include "LCD_Touch.h"
-#include "lcd.h"
-#include "fontsFLASH.h"
-#include "additionalFonts.h"
 #include "token.h"
 #include <stdbool.h>
-#include <stdlib.h>
 #include "stack.h"
 #include "arith_lib.h"
-#include "error.h"
+#include "fehlerbehandlung.h"
+
 /*
     @brief  Takes a number from the stack and puts the digit on the left
 
