@@ -5,6 +5,7 @@
 #include <stack.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #define MAX_INTSTR_LENGTH 16
 #define PREFIXLENGTH 1
@@ -24,8 +25,9 @@ static char *intToString(int value)
   int v = value;
 
   result[i--] = '\0';
+  
   do {
-    result[i--] = abs(v % 10) + '0'; // ASCI representation of digit at arity
+    result[i--] = abs(v % 10) + '0';
     v /= 10;
   } while(v != 0);
 
@@ -47,6 +49,10 @@ int addition(void) {
     return ERR_UNDERFLOW;
   }
 
+  if(e1 > 0 && e2 > 0 && e1 > INT_MAX - e2 || e1 < 0 && e2 < 0 && e1 < INT_MIN - e2 ){
+    return ERR_OVERFLOW;
+  }
+
   int result = e1 + e2;
 
   if (stack_push(result) != 0) {
@@ -63,6 +69,10 @@ int subtraction(void) {
 
   if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0) {
     return ERR_UNDERFLOW;
+  }
+
+  if(e1 > 0 && e2 < 0 && e1 > INT_MAX + e2 || e1 < 0 && e2 > 0 && e1 < INT_MIN + e2 ){
+    return ERR_OVERFLOW;
   }
 
   int result = e2 - e1;
@@ -83,6 +93,13 @@ int multiplication(void) {
     return ERR_UNDERFLOW;
   }
 
+  if(e1 > 0 && e2 > 0 && abs(e1) > abs(INT_MAX) / abs(e2) || e1 > 0 && e2 < 0 && abs(e1) > abs(INT_MIN) / abs(e2) 
+    || e1 < 0 && e2 > 0 && abs(e1) > abs(INT_MIN) / abs(e2) || e1 < 0 && e2 < 0 && abs(e1) > abs(INT_MAX) / abs(e2) ){
+
+    return ERR_OVERFLOW;
+
+  } 
+
   int result = e1 * e2;
 
   if (stack_push(result) != 0) {
@@ -100,6 +117,10 @@ int division(void) {
     return ERR_UNDERFLOW;
   }
 
+  if(e2 == 0 || e1 == INT_MIN && e2 == -1){
+    return ERR_OVERFLOW;
+  }
+
   if (e1 == 0) {
     return ERR_DIVZERO;
   }
@@ -109,6 +130,7 @@ int division(void) {
   if (stack_push(result) != 0) {
     return ERR_OVERFLOW;
   }
+
 
   return 0;
 }

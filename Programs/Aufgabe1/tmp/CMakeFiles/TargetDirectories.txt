@@ -1,0 +1,8 @@
+Z:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/CMakeFiles/database.dir
+Z:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/CMakeFiles/Aufgabe1.Debug+ITSboard.dir
+Z:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/CMakeFiles/Aufgabe1.Debug+ITSboard-build.dir
+Z:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/CMakeFiles/Aufgabe1.Debug+ITSboard-configure.dir
+Z:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/CMakeFiles/Aufgabe1.Debug+ITSboard-executes.dir
+Z:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/CMakeFiles/Aufgabe1.Debug+ITSboard-database.dir
+Z:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/CMakeFiles/edit_cache.dir
+Z:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/CMakeFiles/rebuild_cache.dir

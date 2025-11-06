@@ -1,0 +1,6 @@
+{
+    "debug.hideSlowPreLaunchWarning": true,
+    "clangd.arguments": [
+        "--compile-commands-dir=z:\\TI_Labor\\GS\\Praktikum\\ITS-BRD-GSP\\Programs\\Aufgabe1\\out\\Aufgabe1\\ITSboard\\Debug"
+    ]
+}

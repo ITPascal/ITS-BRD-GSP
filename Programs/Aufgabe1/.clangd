@@ -1,6 +1,6 @@
 CompileFlags:
   CompilationDatabase: >-
-    /Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/out/Aufgabe1/ITSboard/Debug
+    z:\TI_Labor\GS\Praktikum\ITS-BRD-GSP\Programs\Aufgabe1\out\Aufgabe1\ITSboard\Debug
   Add:
     - '-D_ILP32=1'
     - '-D_USE_STATIC_INLINE=1'
@@ -413,28 +413,27 @@ CompileFlags:
     - '-D__thumb__=1'
     - '-D__ARMCOMPILER_LIBCXX=1'
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Drivers/CMSIS/Include
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Drivers/CMSIS/Include
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Inc
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Drivers/STM32F4xx_HAL_Driver/Inc
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Drivers/BSP/STM32F4xx_Nucleo_144
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Drivers/BSP/STM32F4xx_Nucleo_144
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Utilities/Fonts
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../stm32cubef4/Utilities/Fonts
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../DisplayWaveshare/Inc
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../DisplayWaveshare/Inc
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../ITS_BRD_LIB/Utilities/AddFonts
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../ITS_BRD_LIB/Utilities/AddFonts
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/tmp/Aufgabe1.Debug+ITSboard
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/RTE/_Debug_ITSboard
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/RTE/_Debug_ITSboard
     - >-
-      -I/Users/pascalsendecky/.cache/arm/packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+      -IC:/Users/infwdd726/AppData/Local/arm/packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include
     - >-
-      -I/Users/pascalsendecky/.cache/arm/packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+      -IC:/Users/infwdd726/AppData/Local/arm/packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
     - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../ITS_BRD_LIB/Inc
-    - >-
-      -I/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/Inc
+      -IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/../../ITS_BRD_LIB/Inc
+    - '-IZ:/TI_Labor/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe1/Inc'
