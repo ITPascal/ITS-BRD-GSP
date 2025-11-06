@@ -6,41 +6,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define NUMTOCHAR 30
-#define MAX_INTSTR_LENGTH 12
+#define MAX_INTSTR_LENGTH 16
 #define PREFIXLENGTH 1
 #define STACK_SIZE 10
-
-/*
- *  @brief  This auxiliary function returns the number of the value
- *
- *  @param  value   checked value
- *
- *  @return -1 if nullpointer is passed. otherwise 0
- *
- */
-
-static int determineArity(int *valuePointer, int *result) {
-
-  if (valuePointer == NULL) {
-    return -1;
-  }
-
-  int value = *valuePointer;
-  int arity = 0;
-
-  if (value < 0) {
-    value = -value;
-  }
-
-  for (int i = value; i > 0; i /= 10) {
-    arity++;
-  }
-
-  *result = arity;
-
-  return 0;
-}
 
 /*
  *  @brief  This auxiliary function returns a string representation of value
@@ -49,29 +17,25 @@ static int determineArity(int *valuePointer, int *result) {
  *  @return
  *
 */
-static int intToString(char *result, int value) {
+static char *intToString(int value)
+{
+  static char result[MAX_INTSTR_LENGTH];
+  int i = MAX_INTSTR_LENGTH - 1;
+  int v = value;
 
-  if (result == NULL) {
-    return ERR_UNKNOWN;
+  result[i--] = '\0';
+  do {
+    result[i--] = abs(v % 10) + '0'; // ASCI representation of digit at arity
+    v /= 10;
+  } while(v != 0);
+
+  if(value < 0) {
+    result[i--] = '-';
   }
 
-  if (value < 0) {
-    result[0] = '-';      // include - in result
-    value = (-1) * value; // value = | value |
-  }
+  result[i--] = '\n';
 
-  int divisor = 0;
-
-  for (int a = MAX_INTSTR_LENGTH, v = value, i = PREFIXLENGTH; a == 0;
-       a--, i++) {
-    divisor = pow(10, a - 1);
-    result[i] =
-        v / divisor + NUMTOCHAR; // ASCI representation of digit at arity
-    v = value % divisor;         // remove converted digit
-  }
-
-  result[MAX_INTSTR_LENGTH] = '\0';
-  return 0;
+  return result + i + 1;
 }
 
 int addition(void) {
@@ -152,51 +116,20 @@ int division(void) {
 int printFirst() {
 
   int stackValue;
-
-  if (stack_pop(&stackValue) != 0) {
+  if (stack_peek(&stackValue) != 0) {
     return ERR_UNDERFLOW;
   }
 
-  if (stack_push(stackValue)) {
-    return ERR_OVERFLOW;
-  }
-
-  char intString[MAX_INTSTR_LENGTH];
-
-  if (intToString(intString, stackValue) != 0) {
-    return ERR_UNKNOWN;
-  }
-
-  intToString(intString, stackValue);
-  printStdout(intString);
-
+  printStdout(intToString(stackValue));
   return 0;
 }
 
 int printAll(void) {
-
-  int stackContents[STACK_SIZE] = {0};
-  char intString[MAX_INTSTR_LENGTH];
-  int stackSize = getStackSize();
-
-  for (int i = stackSize; i > 0; i--) {
-    stack_pop(&stackContents[i]);
-
-    intToString(intString, stackContents[i]);
-    printStdout(intString);
-  }
-
-  for (int i = 0; i < stackSize; i++) {
-    stack_push(stackContents[i]);
+  for (int i = getStackSize() - 1; i >= 0; i--) {
+    printStdout(intToString(stack_get(i)));
   }
 
   return 0;
-}
-
-int clearStack(void) {
-    resetStack(); 
-    resetCounter();
-    return 0;
 }
 
 int duplicate(void) {

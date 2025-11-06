@@ -18,112 +18,62 @@
 #include "arith_lib.h"
 #include "fehlerbehandlung.h"
 
-/*
-    @brief  Takes a number from the stack and puts the digit on the left
-
-    @param addVal	int containing a positive digit
-
-*/
-
-int postpendNumber(int addVal) {
-
-	if (addVal < 0) {
-		handleError(ERR_UNKNOWN);
-	}
-
-    int stackVal = 0;
-
-	if (stack_pop(&stackVal) != 0) {
-		handleError(stackVal);
-	}
-
-	int result = stackVal * 10 + addVal;
-	return 0;
-}
-
 int main(void) {
 
-	T_token lastInput;
-	lastInput.tok = UNEXPECTED;
 	T_token input = {0};
-
 	int result = 0;
 
 	initITSboard();    // Initialisierung des ITS Boards
 	initDisplay();	   // Initialisierung der Taschenrechner GUIs
-	TP_Init(false);    // Initialisierung des LCD Boards mit Touch
-
 	while(1) {
 		input = nextToken();	//read input
 		switch (input.tok) {	//process input
 			case NUMBER:
-				if (lastInput.tok == NUMBER) {
-					postpendNumber(input.val);
-				}
-				else {
-					stack_push(input.val);
-				}
+				result = stack_push(input.val);
 				break;
 			case PLUS:
 				result = addition();
-				if(result != 0){
-					handleError(result);
-				}
 				break;
 			case MINUS: 
 				result = subtraction();
-				if(result != 0){
-					handleError(result);
-				}
 				break;
 			case MULT:
 				result = multiplication();
-				if(result != 0){
-					handleError(result);
-				}
 				break;
 			case DIV: 
 				result = division();
-				if(result != 0){
-					handleError(result);
-				}
 				break;        
 			case PRT:
-				result = printFirst(); 
-				if(result != 0){
-					handleError(result);
-				}
+				result = printFirst();
 				break;
 			case SWAP:
-				swapEntries();
+				result = swapEntries();
 				break;
 			case PRT_ALL:
 				printAll();
 				break;
 			case CLEAR:
-				clearStack();
+				resetStack();
 				break;
 			case DOUBLE:
 				result = duplicate();
-				if(result != 0){
-					handleError(result);
-				}
 				break;
 			case ENTER: 
 				//nothing
 				break;
 			case UNEXPECTED:
+				result = ERR_UNKNOWN;
 				break;
 			case OVERFLOW:
+				result = ERR_OVERFLOW;
 				break;
 			default:
 				break;
 		}
-    lastInput.tok = input.tok;
-	lastInput.val = input.val;
+
+		if(result != 0){
+			handleError(result);
+		}
 	}
-
-
-
 }
 // EOF

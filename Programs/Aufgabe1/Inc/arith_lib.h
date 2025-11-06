@@ -56,15 +56,7 @@ int printFirst();
  ****************************************************************************************/
 
 int printAll(void);
-/*
- ****************************************************************************************
- * @brief : This function removes all entries from the stack and sets its size to 0
- *
- * @return 0 is returned in case of success. In case of an error the 1 will
- *         be returned.
- ****************************************************************************************/
 
-int clearStack(void);
 /*
  ****************************************************************************************
  * @brief : This function duplicates the first element on the stack and puts the duplicate 
