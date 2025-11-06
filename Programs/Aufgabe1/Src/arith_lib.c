@@ -1,7 +1,6 @@
 #include "arith_lib.h"
 #include <display.h>
 #include <Fehlerbehandlung.h>
-#include <math.h>
 #include <stack.h>
 #include <stdbool.h>
 #include <stdlib.h>
