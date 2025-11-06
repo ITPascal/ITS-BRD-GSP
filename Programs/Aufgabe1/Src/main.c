@@ -7,6 +7,7 @@
   */
 /* Includes ------------------------------------------------------------------*/
 
+#include "Fehlerbehandlung.h"
 #include "display.h"
 #include "scanner.h"
 #include "init.h"
@@ -25,18 +26,15 @@
 */
 
 int postpendNumber(int addVal) {
-	int errorCode;
-	
+
 	if (addVal < 0) {
-		errorCode = addVal;
-		handleError(errorCode);
+		handleError(ERR_UNKNOWN);
 	}
 
     int stackVal = 0;
 
 	if (stack_pop(&stackVal) != 0) {
-		errorCode = stack_pop(&stackVal);
-		handleError(errorCode);
+		handleError(stackVal);
 	}
 
 	int result = stackVal * 10 + addVal;
