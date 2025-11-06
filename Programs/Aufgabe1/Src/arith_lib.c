@@ -93,11 +93,15 @@ int multiplication(void) {
     return ERR_UNDERFLOW;
   }
 
-  if(e1 > 0 && e2 > 0 && abs(e1) > abs(INT_MAX) / abs(e2) || e1 > 0 && e2 < 0 && abs(e1) > abs(INT_MIN) / abs(e2) 
-    || e1 < 0 && e2 > 0 && abs(e1) > abs(INT_MIN) / abs(e2) || e1 < 0 && e2 < 0 && abs(e1) > abs(INT_MAX) / abs(e2) ){
+  unsigned int e1_abs = abs(e1);
+  unsigned int e2_abs = abs(e2);
+  unsigned int min_abs = abs(INT_MIN);
 
+  if((e1 > 0 && e2 > 0 && e1_abs > INT_MAX / e2_abs) ||
+     (e1 > 0 && e2 < 0 && e1_abs > min_abs / e2_abs) ||
+     (e1 < 0 && e2 > 0 && e1_abs > min_abs / e2_abs) ||
+     (e1 < 0 && e2 < 0 && e1_abs > INT_MAX / e2_abs)) {
     return ERR_OVERFLOW;
-
   } 
 
   int result = e1 * e2;
