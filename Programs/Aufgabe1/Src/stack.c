@@ -15,7 +15,7 @@ int stack_push(int v){
     stack[counter++] = v;
     
     return 0;
-    
+
 }
 
 int stack_pop(int *v){
@@ -40,5 +40,5 @@ void resetStack(){
 }
 
 int resetCounter(void) {
-    counter = 0;
+    return counter = 0;
 }
