@@ -7,6 +7,7 @@ static int stack[STACK_SIZE];
 static int counter = 0;
 
 int stack_push(int v){
+
     if(counter >= STACK_SIZE){
         return ERR_OVERFLOW;
     }
@@ -14,6 +15,7 @@ int stack_push(int v){
     stack[counter++] = v;
     
     return 0;
+    
 }
 
 int stack_pop(int *v){

@@ -26,10 +26,14 @@
 
 int postpendNumber(int addVal) {
 	int errorCode;
+	
 	if (addVal < 0) {
-		return -1;
+		errorCode = addVal;
+		handleError(errorCode);
 	}
+
     int stackVal = 0;
+
 	if (stack_pop(&stackVal) != 0) {
 		errorCode = stack_pop(&stackVal);
 		handleError(errorCode);
