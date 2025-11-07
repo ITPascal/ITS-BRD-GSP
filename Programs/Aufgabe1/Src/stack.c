@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file    stack.c
- * @author  Pascal Sendecky
+ * @author  Pascal Sendecky, Julius Sawilski
  * @version 1.0
  *
  * @date    07. November 2025
