@@ -11,7 +11,6 @@
 #include "display.h"
 #include "scanner.h"
 #include "init.h"
-#include "LCD_Touch.h"
 #include "token.h"
 #include <stdbool.h>
 #include "stack.h"
