@@ -7,7 +7,6 @@
   */
 /* Includes ------------------------------------------------------------------*/
 
-#include "Fehlerbehandlung.h"
 #include "display.h"
 #include "scanner.h"
 #include "init.h"

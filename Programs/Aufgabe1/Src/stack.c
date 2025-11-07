@@ -1,5 +1,5 @@
 #include "stack.h"
-#include "Fehlerbehandlung.h"
+#include "fehlerbehandlung.h"
 
 #define STACK_SIZE 10
 
