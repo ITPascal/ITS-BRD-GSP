@@ -194,8 +194,15 @@ int printFirst(void) {
 /**
  * @brief Gibt alle Elemente des Stacks auf dem Display aus, vom obersten zum untersten.
  * @retval 0 Erfolgreich
- */
+ * @retval ERR_UNDERFLOW  Wenn der Stack leer ist
+  */
 int printAll(void) {
+    int stackValue;
+
+    if (stack_peek(&stackValue) != 0) {
+        return ERR_UNDERFLOW;
+    }
+
     for (int i = getStackSize() - 1; i >= 0; i--) {
         printStdout(intToString(stack_get(i)));
     }

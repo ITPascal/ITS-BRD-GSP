@@ -73,7 +73,7 @@ int main(void) {
                 result = swapEntries();
                 break;
             case PRT_ALL:
-                printAll();
+                result = printAll();
                 break;
             case CLEAR:
                 resetStack();
