@@ -159,12 +159,12 @@ int division(void) {
         return ERR_UNDERFLOW;
     }
 
-    if (e2 == 0 || (e2 == INT_MIN && e1 == -1)) {
-        return ERR_OVERFLOW;
-    }
-
     if (e1 == 0) {
         return ERR_DIVZERO;
+    }
+
+    if (e2 == INT_MIN && e1 == -1) {
+        return ERR_OVERFLOW;
     }
 
     int result = e2 / e1;
