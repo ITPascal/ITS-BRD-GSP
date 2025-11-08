@@ -96,8 +96,8 @@ int subtraction(void) {
         return ERR_UNDERFLOW;
     }
 
-    if ((e1 > 0 && e2 < 0 && e1 > INT_MAX + e2) ||
-        (e1 < 0 && e2 > 0 && e1 < INT_MIN + e2)) {
+    if ((e1 > 0 && e2 < 0 && e1 > (INT_MAX + e2) + 1) ||
+        (e1 < 0 && e2 > 0 && e1 <= INT_MIN + e2)) {  
         return ERR_OVERFLOW;
     }
 
@@ -167,7 +167,7 @@ int division(void) {
         return ERR_DIVZERO;
     }
 
-    int result = e1 / e2;
+    int result = e2 / e1;
 
     if (stack_push(result) != 0) {
         return ERR_OVERFLOW;
