@@ -96,8 +96,8 @@ int subtraction(void) {
         return ERR_UNDERFLOW;
     }
 
-    if ((e1 > 0 && e2 < 0 && e1 > (INT_MAX + e2) + 1) ||
-        (e1 < 0 && e2 > 0 && e1 <= INT_MIN + e2)) {  
+    if ((e1 < 0 && e2 > INT_MAX + e1) || 
+        (e1 > 0 && e2 < INT_MIN + e1)) {
         return ERR_OVERFLOW;
     }
 
@@ -159,7 +159,7 @@ int division(void) {
         return ERR_UNDERFLOW;
     }
 
-    if (e2 == 0 || (e1 == INT_MIN && e2 == -1)) {
+    if (e2 == 0 || (e2 == INT_MIN && e1 == -1)) {
         return ERR_OVERFLOW;
     }
 
