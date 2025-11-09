@@ -46,7 +46,7 @@ int multiplication(void);
  *         be returned.
  ****************************************************************************************/
 
-int printFirst();
+int printFirst(void);
 /*
  ****************************************************************************************
  * @brief : This function prints the all entries on the stack. All entries remains on the stack
