@@ -117,10 +117,11 @@
   "cmake.ignoreCMakeListsMissing": true,
   "C_Cpp_Runner.msvcBatchPath": "",
   "clangd.arguments": [
-    "--compile-commands-dir=c:\\Shared_GS\\Programs\\Aufgabe1\\out\\Aufgabe1\\ITSboard\\Debug"
+    "--compile-commands-dir=c:\\Users\\sawil\\Desktop\\Projekte\\Git\\GS_Shared\\Programs\\Aufgabe1\\out\\Aufgabe1\\ITSboard\\Debug"
   ],
   "debug.hideSlowPreLaunchWarning": true,
   "python.analysis.extraPaths": [
     "c:\\Users\\sawil\\.vcpkg\\artifacts\\2139c4c6\\debuggers.arm.armdbg\\6.6.1\\sw\\osgi\\plugins\\com.arm.debug.interpreter.jython.api_6.6.1.202508041948"
-  ]
+  ],
+  "debug.showInStatusBar": "never"
 }
