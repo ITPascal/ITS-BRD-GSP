@@ -14,6 +14,12 @@
 #define	_FEHLERBEHANDLUNG_H
 
 /**
+ * @brief Defaultwert
+ * Wird zurückgegeben, wenn alles gut ist.
+ */
+#define SUCCESS 0
+
+/**
  * @brief Fehlercode: Stacküberlauf
  * Wird zurückgegeben, wenn versucht wird, ein Element auf einen vollen Stack zu legen.
  */
