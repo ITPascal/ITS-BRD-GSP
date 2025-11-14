@@ -1,8 +1,8 @@
 build:
   generated-by: csolution version 2.12.0
-  solution: ../../../../Aufgabe1.csolution.yml
-  project: ../../../../Aufgabe1.cproject.yml
-  context: Aufgabe1.Debug+ITSboard
+  solution: ../../../../Aufgabe2.csolution.yml
+  project: ../../../../Aufgabe2.cproject.yml
+  context: Aufgabe2.Debug+ITSboard
   compiler: AC6
   board: STMicroelectronics::NUCLEO-F429ZI:Rev.B
   board-pack: Keil::STM32NUCLEO_BSP@1.8.1
@@ -41,7 +41,7 @@ build:
     - name: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/2.17.1/Documentation/DM00104712.pdf
       title: STM32CubeMX User Manual
   dbgconf:
-    - file: ../../../../.cmsis/Aufgabe1+ITSboard.dbgconf
+    - file: ../../../../.cmsis/Aufgabe2+ITSboard.dbgconf
       version: 0.0.0
   processor:
     endian: little
@@ -155,7 +155,7 @@ build:
     rtedir: ../../../../RTE
   output:
     - type: elf
-      file: Aufgabe1.axf
+      file: Aufgabe2.axf
   components:
     - component: ARM::CMSIS:CORE@6.1.0
       condition: ARMv6_7_8-M Device
@@ -182,7 +182,7 @@ build:
           category: doc
           version: 6.1.0
   linker:
-    script: ../../../../Aufgabe1_ITSboard.sct
+    script: ../../../../Aufgabe2_ITSboard.sct
   groups:
     - group: Doc
       files:
@@ -325,31 +325,9 @@ build:
       files:
         - file: ../../../../../../ITS_BRD_LIB/Inc/lcd.h
           category: header
-        - file: ../../../../Inc/display.h
-          category: header
-        - file: ../../../../Inc/scanner.h
-          category: header
-        - file: ../../../../Inc/token.h
-          category: header
-        - file: ../../../../Inc/stack.h
-          category: header
-        - file: ../../../../Inc/arith_lib.h
-          category: header
-        - file: ../../../../Inc/fehlerbehandlung.h
-          category: header
     - group: Program/User/Src
       files:
         - file: ../../../../Src/main.c
-          category: sourceC
-        - file: ../../../../Src/display.c
-          category: sourceC
-        - file: ../../../../Src/scanner.c
-          category: sourceC
-        - file: ../../../../Src/stack.c
-          category: sourceC
-        - file: ../../../../Src/arith_lib.c
-          category: sourceC
-        - file: ../../../../Src/fehlerbehandlung.c
           category: sourceC
   constructed-files:
     - file: ../../../../RTE/_Debug_ITSboard/RTE_Components.h

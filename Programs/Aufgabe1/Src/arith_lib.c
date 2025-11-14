@@ -63,9 +63,14 @@ static char *intToString(int value) {
 int addition(void) {
     int e1 = 0;
     int e2 = 0;
+    int err;
 
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0) {
-        return ERR_UNDERFLOW;
+    if((err = stack_pop(&e1)) != SUCCESS){
+        return err;
+    }
+
+    if((err = stack_pop(&e2)) != SUCCESS){
+        return err;
     }
 
     if ((e1 > 0 && e2 > 0 && e1 > INT_MAX - e2) ||
@@ -75,11 +80,11 @@ int addition(void) {
 
     int result = e1 + e2;
 
-    if (stack_push(result) != 0) {
-        return ERR_OVERFLOW;
+    if((err = stack_push(result) != 0)){
+        return err;
     }
 
-    return 0;
+    return SUCCESS;
 }
 
 /**
@@ -91,9 +96,14 @@ int addition(void) {
 int subtraction(void) {
     int e1 = 0;
     int e2 = 0;
+    int err;
 
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0) {
-        return ERR_UNDERFLOW;
+    if((err = stack_pop(&e1)) != SUCCESS){
+        return err;
+    }
+
+    if((err = stack_pop(&e2)) != SUCCESS){
+        return err;
     }
 
     if ((e1 < 0 && e2 > INT_MAX + e1) || 
@@ -103,11 +113,11 @@ int subtraction(void) {
 
     int result = e2 - e1;
 
-    if (stack_push(result) != 0) {
-        return ERR_OVERFLOW;
+    if((err = stack_push(result) != SUCCESS)){
+        return err;
     }
 
-    return 0;
+    return SUCCESS;
 }
 
 /**
@@ -119,9 +129,14 @@ int subtraction(void) {
 int multiplication(void) {
     int e1 = 0;
     int e2 = 0;
+    int err;
 
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0) {
-        return ERR_UNDERFLOW;
+    if((err = stack_pop(&e1)) != SUCCESS){
+        return err;
+    }
+
+    if((err = stack_pop(&e2)) != SUCCESS){
+        return err;
     }
 
     unsigned int e1_abs = abs(e1);
@@ -137,11 +152,11 @@ int multiplication(void) {
 
     int result = e1 * e2;
 
-    if (stack_push(result) != 0) {
-        return ERR_OVERFLOW;
+    if((err = stack_push(result) != 0)){
+        return err;
     }
 
-    return 0;
+    return SUCCESS;
 }
 
 /**
@@ -155,12 +170,18 @@ int division(void) {
     int e1 = 0;
     int e2 = 0;
 
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0) {
-        return ERR_UNDERFLOW;
+    int err;
+
+    if((err = stack_pop(&e1)) != SUCCESS){
+        return err;
     }
 
-    if (e1 == 0) {
-        return ERR_DIVZERO;
+    if((err = stack_pop(&e2)) != SUCCESS){
+        return err;
+    }
+
+    if ((err = e1) == 0) {
+        return err;
     }
 
     if (e2 == INT_MIN && e1 == -1) {
@@ -169,11 +190,11 @@ int division(void) {
 
     int result = e2 / e1;
 
-    if (stack_push(result) != 0) {
-        return ERR_OVERFLOW;
+    if((err = stack_push(result) != 0)){
+        return err;
     }
 
-    return 0;
+    return SUCCESS;
 }
 
 /**
@@ -183,12 +204,14 @@ int division(void) {
  */
 int printFirst(void) {
     int stackValue;
-    if (stack_peek(&stackValue) != 0) {
-        return ERR_UNDERFLOW;
+    int err;
+
+    if((err = stack_peek(&stackValue) != SUCCESS)){
+        return err;
     }
 
     printStdout(intToString(stackValue));
-    return 0;
+    return SUCCESS;
 }
 
 /**
@@ -198,15 +221,16 @@ int printFirst(void) {
   */
 int printAll(void) {
     int stackValue;
+    int err;
 
-    if (stack_peek(&stackValue) != 0) {
-        return ERR_UNDERFLOW;
+    if((err = stack_peek(&stackValue) != SUCCESS)){
+        return err;
     }
 
     for (int i = getStackSize() - 1; i >= 0; i--) {
         printStdout(intToString(stack_get(i)));
     }
-    return 0;
+    return SUCCESS;
 }
 
 /**
@@ -217,16 +241,17 @@ int printAll(void) {
  */
 int duplicate(void) {
     int stackValue;
+    int err;
 
-    if (stack_pop(&stackValue) != 0) {
-        return ERR_UNDERFLOW;
+    if((err = stack_pop(&stackValue)) != SUCCESS){
+        return err;
     }
 
-    if (stack_push(stackValue) != 0 || stack_push(stackValue) != 0) {
-        return ERR_OVERFLOW;
+    if ((err = stack_push(stackValue) != SUCCESS)|| (stack_push(stackValue) != SUCCESS)) {
+        return err;
     }
 
-    return 0;
+    return SUCCESS;
 }
 
 /**
@@ -238,14 +263,15 @@ int duplicate(void) {
 int swapEntries(void) {
     int e1 = 0;
     int e2 = 0;
+    int err;
 
-    if (stack_pop(&e1) != 0 || stack_pop(&e2) != 0) {
-        return ERR_UNDERFLOW;
+    if ((err = stack_pop(&e1) != SUCCESS) || (err = stack_pop(&e2) != SUCCESS)) {
+        return err;
     }
 
-    if (stack_push(e1) != 0 || stack_push(e2) != 0) {
-        return ERR_OVERFLOW;
+    if ((err = stack_push(e1) != SUCCESS) || (err = stack_push(e2) != SUCCESS)) {
+        return err;
     }
 
-    return 0;
+    return SUCCESS;
 }
