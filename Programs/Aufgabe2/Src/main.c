@@ -18,13 +18,14 @@ int main(void) {
 
 	initITSboard();    // Initialisierung des ITS Boards
 	GUI_init(DEFAULT_BRIGHTNESS);   // Initialisierung des LCD Boards mit Touch
+	initInput();
 	
 	while(1) {
 		uint32_t in = 0;
 
 		readInput(&in);
 		stateSignals = stateSignals << 2;
-		stateSignals = stateSignals & (~in);
+		stateSignals = stateSignals | in;
 
 		switch(stateSignals & 0x3) {
 			case 0x1:
@@ -39,6 +40,8 @@ int main(void) {
 			case 0x0:
 				lcdPrintS("0x0");
 				break;
+			default:
+				lcdPrintS("non Valid in read");
 		}
 	}
 }
