@@ -325,7 +325,7 @@ build:
       files:
         - file: ../../../../../../ITS_BRD_LIB/Inc/lcd.h
           category: header
-        - file: ../../../../Inc/display.h
+        - file: ../../../../Inc/rotary_display.h
           category: header
         - file: ../../../../Inc/rotary_calculator.h
           category: header
@@ -346,6 +346,8 @@ build:
         - file: ../../../../Src/rotary_input.c
           category: sourceC
         - file: ../../../../Src/rotary_led.c
+          category: sourceC
+        - file: ../../../../Src/rotary_display.c
           category: sourceC
   constructed-files:
     - file: ../../../../RTE/_Debug_ITSboard/RTE_Components.h
