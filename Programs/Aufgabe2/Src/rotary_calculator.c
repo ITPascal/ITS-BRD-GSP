@@ -56,7 +56,7 @@ int rotary_determineState(uint32_t lastPhase, uint32_t currPhase, int *newState)
       *newState = STATE_NOCHANGE;
       break;
     case PHASE_TRANSF(PHASE_C, PHASE_D): //C -> D
-      *newState = STATE_ERROR;
+      *newState = STATE_FORWARD;
       break;
     // originating from PHASE_D
     case PHASE_TRANSF(PHASE_D, PHASE_A): //D -> A

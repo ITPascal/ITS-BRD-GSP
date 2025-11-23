@@ -6,14 +6,15 @@
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
-
-
 #include "init.h"
 #include "LCD_GUI.h"
 #include "lcd.h"
 #include "rotary_calculator.h"
 #include "rotary_input.h"
 #include "rotary_states.h"
+
+#define MASK_LASTPHASE (0x3 << 2)
+#define MASK_CURRPHASE 0x3
 
 int main(void) {
 	uint32_t phaseLog = 0;
@@ -32,7 +33,21 @@ int main(void) {
 		phaseLog = phaseLog | in;
 
 		//process signal
-		rotary_determineState(uint32_t lastPhase, uint32_t currPhase, int *newState)
+		rotary_determineState((phaseLog & MASK_LASTPHASE), (phaseLog & MASK_CURRPHASE), &state);
+		
+		//control actuators
+		switch (state) {
+			case STATE_FORWARD:
+				break;
+			case STATE_BACKWARDS:
+				break;
+			case STATE_NOCHANGE:
+				break;
+			case STATE_ERROR:
+				break;
+			default:
+				return -1;
+		}
 	}
 }
 

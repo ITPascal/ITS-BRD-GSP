@@ -8,6 +8,7 @@
 #ifndef ROTARY_RECHNER_H
 #define ROTARY_RECHNER_H
 
+#include <stdint.h>
 /**
  * @brief masks the state the PHASE the State Machine was previously in
  */
@@ -19,7 +20,6 @@
 /**
  * @brief state in which the object is rotating forwards
  */
-#include <stdint.h>
 #define STATE_FORWARD 1
 /**
  * @brief state in which the object is rotating backwards
@@ -36,6 +36,8 @@
           to the current PHASE is defined
  */
 #define STATE_ERROR 4
+
 int rotary_determineState(uint32_t lastPhase, uint32_t currPhase, int *newState);
+
 #endif /* OUTPUT_H */
 // EOF
