@@ -5,10 +5,37 @@
   * @brief Header file of encoder module. 
   */
 
-#ifndef RECHNER_H
-#define RECHNER_H
-#include "stm32f4xx_hal.h"
+#ifndef ROTARY_RECHNER_H
+#define ROTARY_RECHNER_H
 
-
+/**
+ * @brief masks the state the PHASE the State Machine was previously in
+ */
+#define ORIG_PHASE_MASK 0x2
+/**
+ * @brief masks the PHASE the State Machine is in now
+ */
+#define TRANS_PHASE_MASK 0x0
+/**
+ * @brief state in which the object is rotating forwards
+ */
+#include <stdint.h>
+#define STATE_FORWARD 1
+/**
+ * @brief state in which the object is rotating backwards
+ */
+#define STATE_BACKWARDS 2
+/**
+ * @brief state in which the object has not undergone a phase change. 
+          Occurs when the object is standing still, or has reentered 
+          the current PHASE inbetween timestamps
+ */
+#define STATE_NOCHANGE 3
+/**
+ * @brief state that occurs when no transition from the last PHASE 
+          to the current PHASE is defined
+ */
+#define STATE_ERROR 4
+int rotary_determineState(uint32_t lastPhase, uint32_t currPhase, int *newState);
 #endif /* OUTPUT_H */
 // EOF

@@ -2,12 +2,31 @@
   * @file rotary_input.h
   * @author Julius Sawilski 
   * @date Nov 2025
-  * @brief Header file of input module. 
+  * @brief Header file of input module providing definitions to phase. 
   */
 
 #ifndef ROTARY_INPUT_H
 #define ROTARY_INPUT_H
 
+/**
+ * @brief Phase bei PF1 = 0 und PF0 = 0 
+ */
+#define PHASE_A 0x00
+
+/**
+ * @brief Phase bei PF1 = 1 und PF0 = 0 
+ */
+#define PHASE_B 0x10
+
+/**
+ * @brief Phase bei PF1 = 1 und PF0 = 1 
+ */
+#define PHASE_C 0x11
+
+/**
+ * @brief Phase bei PF1 = 0 und PF0 = 1 
+ */
+#define PHASE_D 0x01
 #include <stdint.h>
 /*
  ****************************************************************************************
@@ -17,6 +36,13 @@
  ****************************************************************************************/
 
 void initInput(void);
+
+/*
+ ****************************************************************************************
+ *  @brief      This function reads the pins PF0 and PF1. It writes the PHASE into in
+ *
+ *  @return     0 if successful. -1 otherwise 
+ ****************************************************************************************/
 int readInput(uint32_t *in); 
 #endif 
 // EOF
