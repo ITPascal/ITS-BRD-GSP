@@ -1,12 +1,12 @@
 /**
-  * @file led.h
+  * @file rotary_led.h
   * @author Julius Sawilski 
   * @date Nov 25
-  * @brief Header file of led module  
+  * @brief Header file of rotary_led module  
   */
 
-#ifndef LED_H
-#define LED_H
+#ifndef ROTARY_LED_H
+#define ROTARY_LED_H
 #include <stdbool.h>
 
 /*
@@ -48,5 +48,5 @@ int showError(void);
  *  @return     0 if clearing was successfull. Otherwise ...
  ****************************************************************************************/
 int clearErrorLED(void);
-#endif /* OUTPUT_H */
+#endif
 // EOF

@@ -172,13 +172,20 @@ project:
     - group: Program/User/Inc
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
-
+        - file: Inc/display.h
+        - file: Inc/rotary_calculator.h
+        - file: Inc/rotary_error.h
+        - file: Inc/rotary_input.h
+        - file: Inc/rotary_led.h
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
       files:
         - file: Src/main.c
-
+        - file: Src/rotary_calculator.c
+        - file: Src/rotary_error.c
+        - file: Src/rotary_input.c
+        - file: Src/rotary_led.c
 
   components:
     - component: ARM::CMSIS:CORE

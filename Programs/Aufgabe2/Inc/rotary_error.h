@@ -1,12 +1,12 @@
 /**
-  * @file error.h
+  * @file rotary_error.h
   * @author Julius Sawilski 
   * @date Nov 25
-  * @brief Header file of error module  
+  * @brief Header file of rotary_error module  
   */
 
-#ifndef ERROR_H
-#define ERROR_H
+#ifndef ROTARY_ERROR_H
+#define ROTARY_ERROR_H
 #include <stdbool.h>
 
 /*
@@ -37,5 +37,5 @@ int clearError();
  ****************************************************************************************/
 int isError(int v);
 
-#endif /* OUTPUT_H */
+#endif
 // EOF
