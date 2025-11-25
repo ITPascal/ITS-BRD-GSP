@@ -38,13 +38,18 @@ void initDisplay(void) {
    lcdPrintS(SPEED_TXT);
 }
 
-int gotoNextChar(void) {
+int CursorToNextChar(void) {
    charIndex = charIndex < (ANGLE_SYMBOLS + SPEED_SYMBOLS) ? charIndex + 1 : 0;
    if(charIndex == ANGLE_COMMA_IDX || charIndex == (ANGLE_SYMBOLS + SPEED_COMMA_INX)) {
       charIndex++;
    }
 }
 
-int updateChar(double speed, double angle) {
+int updateBuffer(double speed, double angle) {
+   //TODO
+}
+
+int updateChar(void) {
+   //TODO
 }
 // EOF

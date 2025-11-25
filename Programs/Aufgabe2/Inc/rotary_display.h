@@ -32,13 +32,13 @@ int gotoNextChar(void);
 
 /*
  ****************************************************************************************
- *  @brief      This function updates the char to which the cursor currently points.
-                The char either belongs to the displayed speed value or to the angle
- *
+ *  @brief      This function updates the char to which the cursor currently points, based
+ *               on the contents of the buffer
+ *           
  *  @return     0 if successful. -1 otherwise 
  ****************************************************************************************/
 
-int updateChar(double speed, double angle);
-
+int updateChar(void);
+int updateBuffer(double speed, double angle);
 #endif
 // EOF
