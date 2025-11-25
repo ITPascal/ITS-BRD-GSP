@@ -9,36 +9,34 @@
   */
 /* Includes ------------------------------------------------------------------*/
 
-#include <stdint.h>
-#include <stm32f4xx_hal.h>
-#include <stm32f429xx.h>
 #include <rotary_input.h>
+#include <stdint.h>
+#include <stm32f429xx.h>
+#include <stm32f4xx_hal.h>
 
-#define MODEM_F0 0x3U 
+#define MODEM_F0 0x3U
 #define MODEM_F1 0x3U << 2
 #define IDR_F0 0x1U
 #define IDR_F1 0x2U
 
 void initInput(void) {
-    uint32_t test1 =  (GPIOF -> MODER);
-    uint32_t test2 =  ~(MODEM_F0 | MODEM_F1);
-    uint32_t test3 = test1 & test2;
+  uint32_t test1 = (GPIOF->MODER);
+  uint32_t test2 = ~(MODEM_F0 | MODEM_F1);
+  uint32_t test3 = test1 & test2;
 
-    GPIOF -> MODER = test1;
+  GPIOF->MODER = test1;
 }
 
 int readInput(uint32_t *in) {
-    if (in == NULL) {
-        return -1;
-    }
+  if (in == NULL) {
+    return -1;
+  }
 
+  uint32_t test1 = (GPIOF->IDR);
+  uint32_t test2 = (IDR_F0 | IDR_F1);
+  uint32_t test3 = (GPIOF->IDR) & (IDR_F0 | IDR_F1);
 
-    uint32_t test1 = (GPIOF->IDR);
-    uint32_t test2 = (IDR_F0 | IDR_F1);
-    uint32_t test3 = (GPIOF->IDR) & (IDR_F0 | IDR_F1);
-    
-
-    *in = test3;
-    return 0;
-} 
+  *in = test3;
+  return 0;
+}
 // EOF

@@ -10,7 +10,7 @@
 #include "rotary_calculator.h"
 #include <stdint.h>
 #include <stm32f4xx_hal.h>
-#include "rotary_input.h "
+#include "rotary_input.h"
 #include "rotary_input.h"
 #include "rotary_states.h"
 
