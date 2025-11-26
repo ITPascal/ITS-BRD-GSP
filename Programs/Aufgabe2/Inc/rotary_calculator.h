@@ -37,7 +37,7 @@
  */
 #define STATE_ERROR 4
 
-int rotary_determineState(uint32_t lastPhase, uint32_t currPhase, int *newState);
+int rotary_determineState(uint32_t lastPhase, uint32_t currPhase);
 int rotary_getAngle(double *angle, int steps, double anglePerStep);
 int rotary_getSpeed(double *angle, int steps, double anglePerStep);
 #endif /* OUTPUT_H */

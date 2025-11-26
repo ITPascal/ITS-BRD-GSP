@@ -11,15 +11,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-
-/*
- ****************************************************************************************
- *  @brief      Diese Funktion initiallisiert die LEDs.
- * 
- *  @return     void
- ****************************************************************************************/
-void initLEDs(void);
-
 /*
  ****************************************************************************************
  *  @brief      Diese Funktion setzt die ERROR LED
@@ -34,15 +25,23 @@ void setErrorLED(void);
  *
  *  @return     void
  ****************************************************************************************/
-void setForwardLED(void);
+void setLEDCounter(int phasencounter);
 
 /*
  ****************************************************************************************
- *  @brief      Diese LED zeigt an das es rückwärts sich dreht.
+ *  @brief      Diese LED löscht die ErrorLED.
  *
  *  @return     void
  ****************************************************************************************/
-void setBackwardLED(void);
+void clearErrorLED();
+
+/*
+ ****************************************************************************************
+ *  @brief      Diese LED zeigt die Richtung des Drehgebers an.
+ *
+ *  @return     void
+ ****************************************************************************************/
+void setLEDDirection(int state);
 
 #endif
 // EOF

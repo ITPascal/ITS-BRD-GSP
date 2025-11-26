@@ -13,63 +13,57 @@
 #include "lcd.h"
 #include <stdio.h>
 #include <string.h>
-#define PRECISION 20
 
-#define ANGLE_TXT "Winkel          :  00,0         Grad"
+#define ANGLE_TXT "Winkel          :  0.0          Grad"
 #define SPEED_TXT "Geschwindigkeit :  0.0          Grad/s"
 
-#define OUT_SYMBOLS 7 
-#define OUT_COMMA_IDX 3 
-#define TERMN_SPACE 1
-
-
-#define YPOS_MAX 19
 #define YPOS_MIDDLE (19 / 2)
 #define XPOS_ANGLE_TXT 2
 #define XPOS_ANGLE_VAL 19
 #define XPOS_SPEED_TXT 2
 #define XPOS_SPEED_VAL 19
-
-static int charIndex = 0;
-static char speedBuffer[(2 * OUT_SYMBOLS) - OUT_COMMA_IDX + TERMN_SPACE]; 
-static char angleBuffer[(2 * OUT_SYMBOLS) - OUT_COMMA_IDX + TERMN_SPACE]; 
+#define YPOS_ANGLE_TXT (YPOS_MIDDLE - 2)
+#define YPOS_SPEED_TXT (YPOS_MIDDLE + 2)
+#define BUF_SIZE 10
 
 void initDisplay(void) {
   GUI_init(DEFAULT_BRIGHTNESS);
-  lcdGotoXY(XPOS_ANGLE_TXT, YPOS_MIDDLE - 2);
+  lcdGotoXY(XPOS_ANGLE_TXT, YPOS_ANGLE_TXT);
   lcdPrintS(ANGLE_TXT);
-  lcdGotoXY(XPOS_SPEED_TXT, YPOS_MIDDLE + 2);
+  lcdGotoXY(XPOS_SPEED_TXT, YPOS_SPEED_TXT);
   lcdPrintS(SPEED_TXT);
 }
 
-int CursorToNextChar(void) {
-  charIndex = charIndex < (2 * OUT_SYMBOLS) ? charIndex + 1 : 0; // reset after last char was reached
-  if (charIndex == OUT_COMMA_IDX ||
-      charIndex == (OUT_SYMBOLS + OUT_COMMA_IDX)) {
-    charIndex++;
+char buf_angle[BUF_SIZE], buf_angle_old[BUF_SIZE];
+char buf_speed[BUF_SIZE], buf_speed_old[BUF_SIZE];
+
+int idx = 0;
+
+void updateDisplay(double angle, double anglePerSec) {
+  if(idx == 0)
+  {
+    snprintf(buf_angle, BUF_SIZE, "%9.1f", angle);
+    snprintf(buf_speed, BUF_SIZE, "%9.1f", anglePerSec);
   }
-   // TODO: Cursor setzen
-   return 0;
+
+  if(buf_angle[idx] != buf_angle_old[idx])
+  {
+    lcdGotoXY(XPOS_ANGLE_VAL + idx, YPOS_ANGLE_TXT);
+    lcdPrintC(buf_angle[idx]);
+    buf_angle_old[idx] = buf_angle[idx];
+  }
+
+  if(buf_speed[idx] != buf_speed_old[idx])
+  {
+    lcdGotoXY(XPOS_SPEED_VAL + idx, YPOS_SPEED_TXT);
+    lcdPrintC(buf_speed[idx]);
+    buf_speed_old[idx] = buf_speed[idx];
+  }
+
+  ++idx;
+  
+  if(idx == BUF_SIZE - 1)
+  {
+    idx = 0;
+  }
 }
-
-int updateBuffer(double speed, double angle) {
-   char angleS[PRECISION];
-   snprintf(angleS, sizeof(angleS), "%f", angle);
-   char speedS[PRECISION];
-   snprintf(speedS, sizeof(speedS), "%f", speed);
-   
-   char* angleCmaP = strchr(speedS, '.');
-   int   angleCmaIdx = (int) (angleS - angleCmaP);
-   char* speedCmaP = strchr(speedS, '.');
-   int   speedCmaIdx = (int) (speedS - speedCmaP);
-
-   int trimIdx = speedCmaIdx - OUT_COMMA_IDX;
-
-   memmove((void*) (speedBuffer[0]), (void*) (speedS[trimIdx]), OUT_SYMBOLS - (OUT_COMMA_IDX + TERMN_SPACE));
-   // TODO: memmove logik vervollständigen, puffer befüllen und terminator setzten, PRECISION ersetzten
-}
-
-int updateChar(void) {
-   // TODO: Aktuellen char printen an cursor
-}
-// EOF

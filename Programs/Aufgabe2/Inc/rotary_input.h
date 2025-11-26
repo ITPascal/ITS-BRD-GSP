@@ -41,8 +41,11 @@ void initInput(void);
  ****************************************************************************************
  *  @brief      This function reads the pins PF0 and PF1. It writes the PHASE into in
  *
- *  @return     0 if successful. -1 otherwise 
+ *  @return     input
  ****************************************************************************************/
-int readInput(uint32_t *in); 
+int readInput(void); 
+
+int buttonS6_pressed(void);
+
 #endif 
 // EOF

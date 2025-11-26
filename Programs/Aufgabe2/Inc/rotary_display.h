@@ -19,26 +19,7 @@
 
 void initDisplay(void);
 
-/*
- ****************************************************************************************
- *  @brief      This function moves the cursor to the character that should be updated next.
-                This is determined by their position (left to right).
- *
- *  @return     0 if successful. -1 otherwise 
- ****************************************************************************************/
+void updateDisplay(double angle, double anglePerSec);
 
- 
-int gotoNextChar(void);
-
-/*
- ****************************************************************************************
- *  @brief      This function updates the char to which the cursor currently points, based
- *               on the contents of the buffer
- *           
- *  @return     0 if successful. -1 otherwise 
- ****************************************************************************************/
-
-int updateChar(void);
-int updateBuffer(double speed, double angle);
 #endif
 // EOF
