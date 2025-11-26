@@ -10,8 +10,6 @@
 #include "rotary_calculator.h"
 #include <stdint.h>
 #include <stm32f4xx_hal.h>
-#include "rotary_input.h"
-#include "rotary_input.h"
 #include "rotary_states.h"
 
 #define PHASE_TRANSF(p1, p2) ((p1 << ORIG_PHASE_MASK) | (p2 << TRANS_PHASE_MASK))

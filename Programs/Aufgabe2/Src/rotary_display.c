@@ -12,7 +12,6 @@
 #include "LCD_GUI.h"
 #include "lcd.h"
 #include <stdio.h>
-#include <string.h>
 
 #define ANGLE_TXT "Winkel          :  0.0          Grad"
 #define SPEED_TXT "Geschwindigkeit :  0.0          Grad/s"
