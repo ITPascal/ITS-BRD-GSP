@@ -1,17 +1,17 @@
 /**
-  ******************************************************************************
-  * @file    main.c
-  * @author  Franz Korf
-  * @brief   Kleines Testprogramm fuer neu erstelle Fonts.
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    main.c
+ * @author  Franz Korf
+ * @brief   Kleines Testprogramm fuer neu erstelle Fonts.
+ ******************************************************************************
+ */
 /* Includes ------------------------------------------------------------------*/
 #include "init.h"
 #include "rotary_calculator.h"
 #include "rotary_display.h"
 #include "rotary_input.h"
 #include "rotary_states.h"
-#include "timer.h "
+#include "timer.h"
 #include <stdint.h>
 #include <timer.h>
 #include <lcd.h>
@@ -22,7 +22,7 @@
 #define PHASE_IDX1 (PHASE_MASK << (1 * PHASE_WIDTH))
 #define MS_PER_TICK (TICKS_PER_US * MS_PER_US)
 #define MS_PER_US 1000
-#define DEGREE_PER_MOVEMENT ((double) MAX_DEGREES / (double) 360)
+#define DEGREE_PER_MOVEMENT ((double)MAX_DEGREES / (double)360)
 #define MAX_DEGREES 1200
 
 int main(void) {
@@ -37,10 +37,10 @@ int main(void) {
 	int movementTracker;
 	int phaseCounter;
 
-	initITSboard();
-	initDisplay();
-	initInput();
-	initTimer();
+  initITSboard();
+  initDisplay();
+  initInput();
+  initTimer();
 
 	while(1) {	//TODO: timestamp soll laut aufgabe nach Phasenwechsel erfolgen
 		

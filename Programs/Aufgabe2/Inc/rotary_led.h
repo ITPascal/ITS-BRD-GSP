@@ -1,52 +1,48 @@
 /**
   * @file rotary_led.h
-  * @author Julius Sawilski 
+  * @author Pascal Sendecky
   * @date Nov 25
   * @brief Header file of rotary_led module  
   */
 
 #ifndef ROTARY_LED_H
 #define ROTARY_LED_H
+
 #include <stdbool.h>
+#include <stdint.h>
+
 
 /*
  ****************************************************************************************
- *  @brief      This function initialized the LEDs
+ *  @brief      Diese Funktion initiallisiert die LEDs.
  * 
- *  @return     0 if setting initializing was successfull. Otherwise ...
+ *  @return     void
  ****************************************************************************************/
-int initLEDs(void);
+void initLEDs(void);
 
 /*
  ****************************************************************************************
- *  @brief      This function displays the counter using dedicated LEDs 
+ *  @brief      Diese Funktion setzt die ERROR LED
  *
- *  @return     0 if displaying was successfull. Otherwise ...
+ *  @return     void
  ****************************************************************************************/
-int showCounter(void);
+void setErrorLED(void);
 
 /*
  ****************************************************************************************
- *  @brief      This function displays the direction of the rotation using dedicated LEDs
+ *  @brief      Diese LED zeigt an das es vorwärts sich dreht.
  *
- *  @return     0 if displaying was successfull. Otherwise ...
+ *  @return     void
  ****************************************************************************************/
-int showDirection(void);
+void setForwardLED(void);
 
 /*
  ****************************************************************************************
- *  @brief      This function displays that an error has occurred using dedicated LEDs
+ *  @brief      Diese LED zeigt an das es rückwärts sich dreht.
  *
- *  @return     0 if displaying was successfull. Otherwise ...
+ *  @return     void
  ****************************************************************************************/
-int showError(void);
+void setBackwardLED(void);
 
-/*
- ****************************************************************************************
- *  @brief      This function clears the LEDs dedicated to singaling errors
- *
- *  @return     0 if clearing was successfull. Otherwise ...
- ****************************************************************************************/
-int clearErrorLED(void);
 #endif
 // EOF
