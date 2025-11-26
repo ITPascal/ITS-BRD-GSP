@@ -18,7 +18,14 @@
  ****************************************************************************************/
 
 void initDisplay(void);
-
+/*
+ ****************************************************************************************
+ *  @brief      This function up updates the internal char-buffer for the current speed and
+ *              angle and updates the next char of angle and speed
+ *
+ *  @param      double angle  current angle to be printed
+ *              double speed  current speed to be printed
+ ****************************************************************************************/
 void updateDisplay(double angle, double anglePerSec);
 
 #endif

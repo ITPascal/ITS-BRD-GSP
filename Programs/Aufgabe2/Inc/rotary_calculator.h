@@ -36,9 +36,16 @@
           to the current PHASE is defined
  */
 #define STATE_ERROR 4
-
+/*
+ ****************************************************************************************
+ *  @brief      This function determines the current state of the rotary encoder
+ *
+ *  @param      uint32_t lastPhase  PHASE read before the currPhase
+ *              uint32_t currPhase  the currently newest PHASE read
+ *               
+ *  @return     0 if successful. -1 otherwise 
+ ****************************************************************************************/
 int rotary_determineState(uint32_t lastPhase, uint32_t currPhase);
-int rotary_getAngle(double *angle, int steps, double anglePerStep);
-int rotary_getSpeed(double *angle, int steps, double anglePerStep);
+
 #endif /* OUTPUT_H */
 // EOF
