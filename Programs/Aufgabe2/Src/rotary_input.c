@@ -32,13 +32,7 @@ int readInput(uint32_t *in) {
         return -1;
     }
 
-
-    uint32_t test1 = (GPIOF->IDR);
-    uint32_t test2 = (IDR_F0 | IDR_F1);
-    uint32_t test3 = (GPIOF->IDR) & (IDR_F0 | IDR_F1);
-    
-
-    *in = test3;
+    *in = (GPIOF->IDR) & (IDR_F0 | IDR_F1);
     return 0;
 } 
 // EOF

@@ -14,6 +14,7 @@
 #include "timer.h "
 #include <stdint.h>
 #include <timer.h>
+#include <lcd.h>
 
 #define PHASE_MASK 0x3
 #define PHASE_WIDTH 2
@@ -33,45 +34,47 @@ int main(void) {
 	double anglePerSec = 0;
 	int state = STATE_NOCHANGE;
 	int timeSinceUpdate;
-	int movementCounter;
+	int movementTracker;
+	int phaseCounter;
 
 	initITSboard();
 	initDisplay();
 	initInput();
 	initTimer();
 
-	while(1) {
-		timestamp = (double) getTimeStamp() / (double) MS_PER_TICK;
-		timeSinceUpdate = (timestamp - lastUpdate);
+	while(1) {	//TODO: timestamp soll laut aufgabe nach Phasenwechsel erfolgen
+		
 		//read signal
-		while ((timeSinceUpdate >= 250 || timeSinceUpdate > 500) && (in == (phaseLog & PHASE_IDX0))) {
+		while (((timeSinceUpdate >= 250) && (in == (phaseLog & PHASE_IDX0)) || timeSinceUpdate > 500)) {
+			timestamp = (double) getTimeStamp() / (double) MS_PER_TICK;
+			timeSinceUpdate = (timestamp - lastUpdate);
 			readInput(&in);
 		}
-			phaseLog = phaseLog << PHASE_IDX1;
-			phaseLog = phaseLog | in;
+		phaseLog = phaseLog << PHASE_IDX1;
+		phaseLog = phaseLog | in;
 
-			//process signal
-			rotary_determineState((phaseLog & PHASE_IDX1), (phaseLog & PHASE_IDX0), &state);
-			lastUpdate = timestamp;
+		//process signal
+		lastUpdate = timestamp;
+		rotary_determineState((phaseLog & PHASE_IDX1), (phaseLog & PHASE_IDX0), &state);
 			
-			//control actuators
-			switch (state) {
-				case STATE_FORWARD:
-					movementCounter++;
-					break;
-				case STATE_BACKWARDS:
-					movementCounter--;
-					break;
-				case STATE_NOCHANGE:
-					//no change
-					break;
-				case STATE_ERROR:
-					return -1;
-					break;
-				default:
-					return -1;
-			}
-		
+		//control actuators
+		switch (state) {
+			case STATE_FORWARD:
+				movementTracker = (movementTracker < 360) ? (movementTracker + 1) : 0;
+				break;
+			case STATE_BACKWARDS:
+				movementTracker = (movementTracker > 0) ? (movementTracker - 1) : (360 - 1);
+				break;
+			case STATE_NOCHANGE:
+				//no change
+				break;
+			case STATE_ERROR:
+				return -1;
+				break;
+			default:
+				return -1;
+		}
+		angle = movementTracker * DEGREE_PER_MOVEMENT;
 	}
 }
 
