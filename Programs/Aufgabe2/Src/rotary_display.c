@@ -48,7 +48,7 @@ int CursorToNextChar(void) {
       charIndex == (OUT_SYMBOLS + OUT_COMMA_IDX)) {
     charIndex++;
   }
-   //TODO: Cursor setzen
+   // TODO: Cursor setzen
    return 0;
 }
 
@@ -66,10 +66,10 @@ int updateBuffer(double speed, double angle) {
    int trimIdx = speedCmaIdx - OUT_COMMA_IDX;
 
    memmove((void*) (speedBuffer[0]), (void*) (speedS[trimIdx]), OUT_SYMBOLS - (OUT_COMMA_IDX + TERMN_SPACE));
-   //TODO: memmove logik vervollständigen, puffer befüllen und terminator setzten, PRECISION ersetzten
+   // TODO: memmove logik vervollständigen, puffer befüllen und terminator setzten, PRECISION ersetzten
 }
 
 int updateChar(void) {
-   //TODO: Aktuellen char printen an cursor
+   // TODO: Aktuellen char printen an cursor
 }
 // EOF

@@ -31,7 +31,6 @@ int readInput(uint32_t *in) {
     if (in == NULL) {
         return -1;
     }
-
     *in = (GPIOF->IDR) & (IDR_F0 | IDR_F1);
     return 0;
 } 
