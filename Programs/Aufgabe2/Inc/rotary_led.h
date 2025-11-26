@@ -1,6 +1,6 @@
 /**
   * @file rotary_led.h
-  * @author Pascal Sendecky
+  * @author Julius Sawilski & Pascal Sendecky
   * @date Nov 25
   * @brief Header file of rotary_led module  
   */
@@ -12,7 +12,7 @@
 
 /*
  ****************************************************************************************
- *  @brief      Diese Funktion setzt die ERROR LED
+ *  @brief      This function sets the ERROR LED.
  *
  *  @return     void
  ****************************************************************************************/
@@ -20,7 +20,8 @@ void setErrorLED(void);
 
 /*
  ****************************************************************************************
- *  @brief      Diese LED zeigt an das es vorwärts sich dreht.
+ *  @brief      This functions displays the forward motion of the spinning object 
+ *              using LEDs.
  *
  *  @return     void
  ****************************************************************************************/
@@ -28,7 +29,7 @@ void setLEDCounter(int phasencounter);
 
 /*
  ****************************************************************************************
- *  @brief      Diese LED löscht die ErrorLED.
+ *  @brief      This function clears the ERROR LED
  *
  *  @return     void
  ****************************************************************************************/
@@ -36,7 +37,7 @@ void clearErrorLED();
 
 /*
  ****************************************************************************************
- *  @brief      Diese LED zeigt die Richtung des Drehgebers an.
+ *  @brief      This funtion displays the current direction using LEDs
  *
  *  @return     void
  ****************************************************************************************/

@@ -1,8 +1,10 @@
 /**
   ******************************************************************************
-  * @file    main.c
-  * @author  Franz Korf
-  * @brief   Kleines Testprogramm fuer neu erstelle Fonts.
+  * @file    rotary_calculator.c
+  * @date    Nov 2025
+  * @author  Julius Sawilski & Paskal Sendecky
+  * @brief   Calculator module intendet for state determination
+             of a rotary encoder
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/

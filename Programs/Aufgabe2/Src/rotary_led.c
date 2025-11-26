@@ -1,3 +1,13 @@
+/**
+  ******************************************************************************
+  * @file    rotary_led.c
+  * @author  Julius Sawilski & Paskal Sendecky
+  * @brief   Module for LED manipulation of the ITS-Boards onboard LEDs relevant
+             to the rotary encoders functionality
+  ******************************************************************************
+  */
+/* Includes ------------------------------------------------------------------*/
+
 #include "rotary_led.h"
 #include "stm32f4xx_hal.h"
 #include "rotary_calculator.h"

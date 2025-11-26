@@ -1,6 +1,6 @@
 /**
   * @file rotary_display.h
-  * @author Julius Sawilski 
+  * @author Julius Sawilski & Pascal Sendecky
   * @date Nov 2025
   * @brief Header file of rotary_display module. 
   */
@@ -21,10 +21,10 @@ void initDisplay(void);
 /*
  ****************************************************************************************
  *  @brief      This function up updates the internal char-buffer for the current speed and
- *              angle and updates the next char of angle and speed
+ *              angle and updates the next char of angle and speed.
  *
- *  @param      double angle  current angle to be printed
- *              double speed  current speed to be printed
+ *  @param      double angle  current angle to be printed < 9999999,9
+ *              double speed  current speed to be printed < 9999999,9
  ****************************************************************************************/
 void updateDisplay(double angle, double anglePerSec);
 

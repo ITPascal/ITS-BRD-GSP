@@ -1,8 +1,9 @@
 /**
  ******************************************************************************
  * @file    main.c
- * @author  Franz Korf
- * @brief   Kleines Testprogramm fuer neu erstelle Fonts.
+ * @date 	Nov 2025
+ * @author  Julius Sawilski & Paskal Sendecky
+ * @brief   main containing superloop of a rotary encoder
  ******************************************************************************
  */
 /* Includes ------------------------------------------------------------------*/
@@ -40,6 +41,8 @@ int main(void) {
 
 	uint32_t lastPhase = readInput();
 	while(1) {	
+
+		// read signal
 		uint32_t phase = readInput();
 		uint32_t timestamp = getTimeStamp();
 
@@ -60,7 +63,6 @@ int main(void) {
 		int state = rotary_determineState(lastPhase, phase);
 		lastPhase = phase;
 
-		// read signal
 		uint32_t timeSinceUpdate = timestamp - lastUpdate;
 		double timeInSeconds = timeSinceUpdate / S_PER_TICK;
 		if ((timeInSeconds >= 0.25 && state != STATE_NOCHANGE) || timeInSeconds > 0.5) {

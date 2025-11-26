@@ -1,11 +1,10 @@
 /**
  * @file display.c
- * @author Franz Korf, HAW Hamburg
- * @date Mar 2016
- * @brief This modules implements a simple output module.
- *        It places two terminals in the terminal area of keypad.
- *        One terminal will be used for standard output. The other one
- *        echos pressed digit keys.
+ * @author Julius Sawilski & Paskal Sendecky
+ * @date Nov 2025
+ * @brief This modules implements a simple output,
+ *        intendet for displaying an angle and
+ *        angle speed for a rotary encoder   
  */
 
 #include "rotary_display.h"
@@ -61,7 +60,7 @@ void updateDisplay(double angle, double anglePerSec) {
 
   ++idx;
   
-  if(idx == BUF_SIZE - 1)
+  if(idx == BUF_SIZE - 1) //last element of buffer
   {
     idx = 0;
   }
