@@ -27,7 +27,6 @@
  * @brief Phase bei PF1 = 0 und PF0 = 1 
  */
 #define PHASE_D 0x01
-#include <stdint.h>
 /*
  ****************************************************************************************
  *  @brief      This function initialize the input function.
