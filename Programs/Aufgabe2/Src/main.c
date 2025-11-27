@@ -10,11 +10,10 @@
 #include "rotary_calculator.h"
 #include "rotary_display.h"
 #include "rotary_input.h"
+#include "rotary_led.h"
+#include <lcd.h>
 #include <stdint.h>
 #include <timer.h>
-#include <lcd.h>
-#include "rotary_led.h"
-
 
 #define PHASE_MASK 0x3
 #define PHASE_WIDTH 2
@@ -26,72 +25,71 @@
 #define DEGREE_PER_MOVEMENT (360.0 / MAX_DEGREES)
 
 int main(void) {
-	uint32_t lastUpdate = 0;
-	double angle = 0.0;
-	double lastAngle = 0.0;
-	double anglePerSec = 0;
-	int phaseCounter = 0;
-	bool errorState = false;
+  uint32_t lastUpdate = 0;
+  double angle = 0.0;
+  double lastAngle = 0.0;
+  double anglePerSec = 0;
+  int phaseCounter = 0;
+  bool errorState = false;
 
-	initITSboard();
-	initDisplay();
-	initTimer();
+  initITSboard();
+  initDisplay();
+  initTimer();
 
-	uint32_t lastPhase = readInput();
-	while(1) {	
-		uint32_t phase = readInput();
-		uint32_t timestamp = getTimeStamp();
+  uint32_t lastPhase = readInput();
+  while (1) {
+    uint32_t phase = readInput();
+    uint32_t timestamp = getTimeStamp();
 
-		if(errorState)
-		{
-			if(buttonS6_pressed())
-			{
-				lastPhase = readInput();
-				clearErrorLED();
-				phaseCounter = 0;
-				errorState = false;
-			}
+    if (errorState) {
+      if (buttonS6_pressed()) {
+        lastPhase = readInput();
+        clearErrorLED();
+        phaseCounter = 0;
+        errorState = false;
+      }
 
-			continue;
-		}
-		
-		// process signal
-		int state = rotary_determineState(lastPhase, phase);
-		lastPhase = phase;
+      continue;
+    }
 
-		// read signal
-		uint32_t timeSinceUpdate = timestamp - lastUpdate;
-		double timeInSeconds = timeSinceUpdate / S_PER_TICK;
-		if ((timeInSeconds >= 0.25 && state != STATE_NOCHANGE) || timeInSeconds > 0.5) {
-			double angleDiff = angle - lastAngle;
-			anglePerSec = angleDiff / timeInSeconds;
-			lastAngle = angle;
-			lastUpdate = timestamp;
-		}
+    // process signal
+    int state = rotary_determineState(lastPhase, phase);
+    lastPhase = phase;
 
-		// control actuators
-		switch (state) {
-			case STATE_FORWARD:
-				phaseCounter++;
-				break;
-			case STATE_BACKWARDS:
-				phaseCounter--;
-				break;
-			case STATE_NOCHANGE:
-				// no change
-				break;
-			case STATE_ERROR:
-				setErrorLED();
-				errorState = true;
-				break;
-		}
+    // control actuators
+    switch (state) {
+    case STATE_FORWARD:
+      phaseCounter++;
+      break;
+    case STATE_BACKWARDS:
+      phaseCounter--;
+      break;
+    case STATE_NOCHANGE:
+      // no change
+      break;
+    case STATE_ERROR:
+      setErrorLED();
+      errorState = true;
+      break;
+    }
 
-		angle = phaseCounter * DEGREE_PER_MOVEMENT;
+    angle = phaseCounter * DEGREE_PER_MOVEMENT;
 
-		updateDisplay(angle, anglePerSec);
-		setLEDCounter(phaseCounter);
-		setLEDDirection(state);
-	}
+    // read signal
+    uint32_t timeSinceUpdate = timestamp - lastUpdate;
+    double timeInSeconds = timeSinceUpdate / S_PER_TICK;
+    if ((timeInSeconds >= 0.25 && state != STATE_NOCHANGE) ||
+        timeInSeconds > 0.5) {
+      double angleDiff = angle - lastAngle;
+      anglePerSec = angleDiff / timeInSeconds;
+      lastAngle = angle;
+      lastUpdate = timestamp;
+    }
+
+    updateDisplay(angle, anglePerSec);
+    setLEDCounter(phaseCounter);
+    setLEDDirection(state);
+  }
 }
 
 // EOF
