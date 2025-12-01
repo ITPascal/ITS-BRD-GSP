@@ -16,12 +16,12 @@
 #include "fontsFLASH.h"
 #include "additionalFonts.h"
 #include "error.h"
+#include "input.h"
 
 
 int main(void) {
 	initITSboard();
 	initInput();
-
 }
 
 // EOF
