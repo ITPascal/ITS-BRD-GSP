@@ -12,20 +12,18 @@
 
 #define MODE_ABSOLUTE 1
 #define MODE_ENCODED 2
-#define MODE_RGB_LINE 3
-#define MODE_RGB_POINT 4
+#define MODE_RGBPALETTE_LINE 3
+#define MODE_RGBNOPALETTE_LINE 4
+#define MODE_RGB_POINT 5
 
 /*
  ****************************************************************************************
  *  @brief      Diese Funktion Codiert ein Pixel codierendes RGBQUAD Struct als 16bit-Wert
  *
- *  @return     uint16_t mit folgender Farbanteilverteilung
- *              bits 0-4:   blau
- *              bits 5-10:  gruen
- *              bits 11-15: rot
+ *  @return     uint16_t mit Farbverteilung
  ****************************************************************************************/
 
-uint16_t lcdColorConversion(RGBQUAD paletteColor);
+uint16_t lcdColorConversion(RGBQUAD paletteColor, int MODE);
 
 /*
  ****************************************************************************************
