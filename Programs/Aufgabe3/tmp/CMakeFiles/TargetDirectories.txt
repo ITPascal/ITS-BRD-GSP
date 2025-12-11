@@ -1,0 +1,8 @@
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe3/tmp/CMakeFiles/database.dir
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe3/tmp/CMakeFiles/Aufgabe3.Debug+ITSboard.dir
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe3/tmp/CMakeFiles/Aufgabe3.Debug+ITSboard-build.dir
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe3/tmp/CMakeFiles/Aufgabe3.Debug+ITSboard-configure.dir
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe3/tmp/CMakeFiles/Aufgabe3.Debug+ITSboard-executes.dir
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe3/tmp/CMakeFiles/Aufgabe3.Debug+ITSboard-database.dir
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe3/tmp/CMakeFiles/edit_cache.dir
+/Users/pascalsendecky/Studium/GS/Praktikum/ITS-BRD-GSP/Programs/Aufgabe3/tmp/CMakeFiles/rebuild_cache.dir
