@@ -57,9 +57,9 @@ int main(void) {
 
             int displayedHeight = (infoHeader.biHeight <= LCD_HEIGHT) ? infoHeader.biHeight : LCD_HEIGHT;
             int displayedWidth = (infoHeader.biWidth <= LCD_WIDTH) ? infoHeader.biWidth : LCD_WIDTH;
-            int colorsUsed = (infoHeader.biClrUsed == 0) ? 256 : infoHeader.biClrUsed;
+            int colorsUsed = (infoHeader.biClrUsed == 0) ? 256 : infoHeader.biClrUsed;    
             
-            COMread((char*)palette, sizeof(RGBQUAD), colorsUsed);
+            COMread((char*)palette, sizeof(RGBQUAD), colorsUsed); // TODO vorher auf Unterschiedliche Codierungen prüfen
             
             int usedOffBits = FILEHEADER_SIZE + INFOHEADER_SIZE + (PALETTE_SIZE * sizeof(RGBQUAD));
             int paddingOffBits = fileHeader.bfOffBits - usedOffBits;
@@ -68,7 +68,7 @@ int main(void) {
                 nextChar();
             }
             
-            if (displayBitmapImageLine(displayedHeight, displayedWidth, infoHeader.biWidth, palette) != 0) {
+            if (displayBitmapImage(1, displayedHeight, displayedWidth, infoHeader.biWidth, palette) != 0) { //TODO Anpassen wenn imageProcessor fertig
               ERR_HANDLER(true, "Fehler während ausgeben von Bild");
             }
 
