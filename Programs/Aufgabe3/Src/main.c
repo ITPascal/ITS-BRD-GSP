@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    main.c
-  * @author  Julius Sawilski & Paskal Sendecky
+  * @author  Julius Sawilski & Pascal Sendecky
   ******************************************************************************
   */
 #include "BMP_types.h"
