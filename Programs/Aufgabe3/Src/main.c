@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    main.c
-  * @author  Julius Sawilski & Paskal Sendecky (Korrekturen durch AI Partner)
+  * @author  Julius Sawilski & Paskal Sendecky
   ******************************************************************************
   */
 #include "BMP_types.h"
@@ -20,25 +20,16 @@
 #include "LCD_general.h"
 #include <stdint.h>
 #include <stdio.h>
-#include <math.h> // Für ceil/floor falls nötig
 #include <stdlib.h>
+#include "imageProcessor.h"
 
 #define S7_MASK (1 << 7)
 #define PALETTE_SIZE 256
 #define FILEHEADER_SIZE 14
 #define INFOHEADER_SIZE 40
+#define BIWIDTH_TOOLARGE 1500
 
 static RGBQUAD palette[PALETTE_SIZE];
-
-
-static uint16_t lcdColorConversion(RGBQUAD paletteColor) {
-    uint16_t red   = paletteColor.rgbRed >> 3;   
-    uint16_t green = paletteColor.rgbGreen >> 2; 
-    uint16_t blue  = paletteColor.rgbBlue >> 3;
-    
-    uint16_t color = (red << ((2*5)+1)) | (green << 5) | blue; // 1. 5 bits rot 2. 6 bits gruen 3. 5 bits rot
-    return color;
-}
 
 int main(void) {
     initITSboard();
@@ -72,41 +63,19 @@ int main(void) {
             
             int usedOffBits = FILEHEADER_SIZE + INFOHEADER_SIZE + (PALETTE_SIZE * sizeof(RGBQUAD));
             int paddingOffBits = fileHeader.bfOffBits - usedOffBits;
-            int eolPadding = (4 - (infoHeader.biWidth % 4)) % 4;
 
             for (int i = 0; i < paddingOffBits; i++) { 
                 nextChar();
             }
+            
+            if (displayBitmapImageLine(displayedHeight, displayedWidth, infoHeader.biWidth, palette) != 0) {
+              ERR_HANDLER(true, "Fehler während ausgeben von Bild");
+            }
 
-            Coordinate screenPos = {0, 0};
-            int paletteIdx = 0;
-            uint16_t color = 0;
-
-            for(int y = 0; y < displayedHeight; y++) {
-                
-                for (int x = 0; x < displayedWidth; x++) {
-                    paletteIdx = nextChar();
-                    
-                    screenPos.x = x;
-                    screenPos.y = (displayedHeight - 1) - y; 
-
-                    if (screenPos.x < LCD_WIDTH && screenPos.y < LCD_HEIGHT && screenPos.y >= 0) {
-                        color = lcdColorConversion(palette[paletteIdx]);
-                        GUI_drawPoint(screenPos, color, DOT_PIXEL_1X1, DOT_FILL_AROUND);
-                    }
-                }
-                int unusedPixels = infoHeader.biWidth - displayedWidth;
-                for(int k=0; k < unusedPixels; k++) {
-                  nextChar();
-                }
-                for(int p=0; p < eolPadding; p++) {
-                    nextChar();
-                }
+            while (nextChar() != EOF){
+              //nichts tun
             }
             imageProcessed = true;
-        }
-        while (nextChar() != EOF){
-           //nichts tun
         }
     }
 }
