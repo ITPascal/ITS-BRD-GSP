@@ -1,13 +1,9 @@
 /**
   ******************************************************************************
   * @file    main.c
-  * @author  Julius Sawilski & Paskal Sendecky
-  * @brief   Main-Klasse die das über USB-UART erhaltene Bilder einließt sie auf
-			 dem Display des ITS-Boards ausgibt
+  * @author  Julius Sawilski & Paskal Sendecky (Korrekturen durch AI Partner)
   ******************************************************************************
   */
-/* Includes ------------------------------------------------------------------*/
-
 #include "BMP_types.h"
 #include "headers.h"
 #include "stm32f429xx.h"
@@ -21,47 +17,96 @@
 #include "input.h"
 #include "MS_basetypes.h"
 #include "errorhandler.h"
-#include "BMP_types.h"
 #include "LCD_general.h"
+#include <stdint.h>
 #include <stdio.h>
+#include <math.h> // Für ceil/floor falls nötig
+#include <stdlib.h>
 
 #define S7_MASK (1 << 7)
 #define PALETTE_SIZE 256
+#define FILEHEADER_SIZE 14
+#define INFOHEADER_SIZE 40
 
 static RGBQUAD palette[PALETTE_SIZE];
 
-int main(void) {
-	initITSboard();
-	initInput();
 
-  BITMAPFILEHEADER file = {0,0,0,0,0};
-  BITMAPINFOHEADER info = {0,0,0,0,0,0,0,0,0,0,0};
-  Coordinate cords = {0,0};
-  bool buttonPressed = true;
-
-  while(1) {
-    buttonPressed = (GPIOF->IDR & S7_MASK); //knopfdruck auf S7 lesen
-    if (buttonPressed) {
-      openNextFile(); //Todo: Erste File öffnen ohne Knopfdruck, dannach erst prüfen
-    }
-    if (readHeaders() != -1) {  // header lesen
-        getFileHeader(&file);
-        getInfoHeader(&info);
-    }
+static uint16_t lcdColorConversion(RGBQUAD paletteColor) {
+    uint16_t red   = paletteColor.rgbRed >> 3;   
+    uint16_t green = paletteColor.rgbGreen >> 2; 
+    uint16_t blue  = paletteColor.rgbBlue >> 3;
     
-    COMread((char*)palette, sizeof(RGBQUAD), PALETTE_SIZE); //palette lesen und speichern
-    int bitmapPaletteOffset = file.bfOffBits - (sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + (info.biClrUsed * sizeof(RGBQUAD)));
-
-    for (int i = 0; i < bitmapPaletteOffset; i++) { // lesen bis an bitmap
-      nextChar();
-    }
-  
-    int colorP = 0;
-
-    while((colorP = nextChar()) != EOF) {
-      //TODO: Punkte zeichnen
-    }
-  }
+    uint16_t color = (red << ((2*5)+1)) | (green << 5) | blue; // 1. 5 bits rot 2. 6 bits gruen 3. 5 bits rot
+    return color;
 }
 
-// EOF
+int main(void) {
+    initITSboard();
+    initInput();
+    GUI_init(DEFAULT_BRIGHTNESS);
+
+    BITMAPFILEHEADER fileHeader = {};
+    BITMAPINFOHEADER infoHeader = {};
+    int currentButtonState = 0;
+    bool imageProcessed = false;
+    bool buttonPressed = false;
+
+    while(1) {
+        currentButtonState = (GPIOF->IDR & S7_MASK);
+        if (currentButtonState == 0) {
+          imageProcessed = false;
+        }
+
+        if (!imageProcessed) {
+            GUI_clear(WHITE);
+            openNextFile();
+            readHeaders();
+            getFileHeader(&fileHeader);
+            getInfoHeader(&infoHeader);
+
+            int displayedHeight = (infoHeader.biHeight <= LCD_HEIGHT) ? infoHeader.biHeight : LCD_HEIGHT;
+            int displayedWidth = (infoHeader.biWidth <= LCD_WIDTH) ? infoHeader.biWidth : LCD_WIDTH;
+            int colorsUsed = (infoHeader.biClrUsed == 0) ? 256 : infoHeader.biClrUsed;
+            
+            COMread((char*)palette, sizeof(RGBQUAD), colorsUsed);
+            
+            int usedOffBits = FILEHEADER_SIZE + INFOHEADER_SIZE + (PALETTE_SIZE * sizeof(RGBQUAD));
+            int paddingOffBits = fileHeader.bfOffBits - usedOffBits;
+            int eolPadding = (4 - (infoHeader.biWidth % 4)) % 4;
+
+            for (int i = 0; i < paddingOffBits; i++) { 
+                nextChar();
+            }
+
+            Coordinate screenPos = {0, 0};
+            int paletteIdx = 0;
+            uint16_t color = 0;
+
+            for(int y = 0; y < displayedHeight; y++) {
+                
+                for (int x = 0; x < displayedWidth; x++) {
+                    paletteIdx = nextChar();
+                    
+                    screenPos.x = x;
+                    screenPos.y = (displayedHeight - 1) - y; 
+
+                    if (screenPos.x < LCD_WIDTH && screenPos.y < LCD_HEIGHT && screenPos.y >= 0) {
+                        color = lcdColorConversion(palette[paletteIdx]);
+                        GUI_drawPoint(screenPos, color, DOT_PIXEL_1X1, DOT_FILL_AROUND);
+                    }
+                }
+                int unusedPixels = infoHeader.biWidth - displayedWidth;
+                for(int k=0; k < unusedPixels; k++) {
+                  nextChar();
+                }
+                for(int p=0; p < eolPadding; p++) {
+                    nextChar();
+                }
+            }
+            imageProcessed = true;
+        }
+        while (nextChar() != EOF){
+           //nichts tun
+        }
+    }
+}
