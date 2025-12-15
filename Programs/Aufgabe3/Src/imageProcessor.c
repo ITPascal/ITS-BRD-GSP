@@ -25,22 +25,29 @@ static int getEOLPadding(int imageBiWidth) {
 
 static int displayEncMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
 
-    uint8_t count = 0;
+    uint8_t clrRowEnd = 0;
     uint8_t colorIdx = 0;
     int x = 0;
     
     for (int y = 0; y < displayedHeight; y++) {
         while (x < displayedWidth) {
-            count = nextChar();
+            clrRowEnd = nextChar() + x;
             colorIdx = nextChar();
-            for(int i = 0; (i < count) && (x < displayedWidth); i++) {
-                uint16_t lcdClr = lcdColorConversion(palette[colorIdx], 1); // TODO Modus erg
-                readBuffer[x + i] = lcdClr;
-                // TODO Logik prüfen
+            while((x < clrRowEnd) && (x < displayedWidth)) {
+                uint16_t lcdClr = lcdColorConversion(palette[colorIdx], 1);
+                readBuffer[x] = lcdClr;
+                x++;
             }
-            x += count;
         }
-        count = displayedWidth - x; // color bleibt gleich
+        uint16_t rowOverlapClr = colorIdx;
+        while (x < imageBiWidth) {
+            x += nextChar();    // keine while(x < clrRowEnd) {...; x++; ...;} nötig 
+            colorIdx = nextChar();
+            if (x < imageBiWidth) {
+                rowOverlapClr = lcdColorConversion(palette[colorIdx], 1);
+            }
+        }
+        clrRowEnd = x - imageBiWidth;
     }
     return 0;
 }
