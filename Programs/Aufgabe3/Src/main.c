@@ -68,11 +68,11 @@ int main(void) {
                 nextChar();
             }
             
-            if (displayBitmapImage(1, displayedHeight, displayedWidth, infoHeader.biWidth, palette) != 0) { //TODO Anpassen wenn imageProcessor fertig
+            if (displayEncMode(displayedHeight, displayedWidth, infoHeader.biWidth, palette) != 0) { //TODO Anpassen wenn imageProcessor fertig
               ERR_HANDLER(true, "Fehler während ausgeben von Bild");
             }
 
-            while (nextChar() != EOF){
+            while (nextChar() != EOF) {
               //nichts tun
             }
             imageProcessed = true;

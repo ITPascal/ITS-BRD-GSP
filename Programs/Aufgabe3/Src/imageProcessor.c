@@ -10,7 +10,7 @@
 static char readBuffer[READBUF_MAXSIZE]; 
 static uint16_t colors[LCD_WIDTH];
 
-uint16_t lcdColorConversion(RGBQUAD paletteColor, int MODUS) {
+uint16_t lcdColorConversion(RGBQUAD paletteColor) {
     uint16_t red   = paletteColor.rgbRed >> 3;   
     uint16_t green = paletteColor.rgbGreen >> 2; 
     uint16_t blue  = paletteColor.rgbBlue >> 3;
@@ -19,40 +19,48 @@ uint16_t lcdColorConversion(RGBQUAD paletteColor, int MODUS) {
     return color;
 }
 
-static int getEOLPadding(int imageBiWidth) {
+int getEOLPadding(int imageBiWidth) {
     return (4 - (imageBiWidth % 4)) % 4; // padding bei (Bildbreite % 4) != 0
 }
 
-static int displayEncMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
-
-    uint8_t clrRowEnd = 0;
-    uint8_t colorIdx = 0;
-    int x = 0;
+int displayEncMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
     
+    if (imageBiWidth > READBUF_MAXSIZE) {
+        ERR_HANDLER(true, "Bildbreite ueberschreitet Pufferkapazitaet");
+        return -1;
+    }
+    
+    int pxRowEnd = 0;
+    int x = 0;
+    uint8_t pxCount = 0; 
+    uint8_t pxClrIdx = 0;
+
     for (int y = 0; y < displayedHeight; y++) {
-        while (x < displayedWidth) {
-            clrRowEnd = nextChar() + x;
-            colorIdx = nextChar();
-            while((x < clrRowEnd) && (x < displayedWidth)) {
-                uint16_t lcdClr = lcdColorConversion(palette[colorIdx], 1);
-                readBuffer[x] = lcdClr;
+        
+        while ((imageBiWidth + x) < pxRowEnd) {
+            colors[x] = lcdColorConversion(palette[pxClrIdx]);
+            x++;
+        }
+        
+        while (x < imageBiWidth) {
+            pxCount = nextChar();
+            pxClrIdx = nextChar();
+            pxRowEnd = x + pxCount;
+            while ((x < pxRowEnd)) {
+                if (x < displayedWidth){
+                    colors[x] = lcdColorConversion(palette[pxClrIdx]);
+                }
                 x++;
             }
         }
-        uint16_t rowOverlapClr = colorIdx;
-        while (x < imageBiWidth) {
-            x += nextChar();    // keine while(x < clrRowEnd) {...; x++; ...;} nötig 
-            colorIdx = nextChar();
-            if (x < imageBiWidth) {
-                rowOverlapClr = lcdColorConversion(palette[colorIdx], 1);
-            }
-        }
-        clrRowEnd = x - imageBiWidth;
+        Coordinate yCoord = {0,y};
+        GUI_WriteLine(yCoord, displayedWidth, colors);
+        x = 0;
     }
     return 0;
 }
 
-static int displayPointNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
+int displayPointNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
     Coordinate screenPos = {0, 0};
     uint16_t color = 0;
     int paletteIdx = 0;
@@ -66,7 +74,7 @@ static int displayPointNoEnc(int displayedHeight, int displayedWidth, int imageB
             paletteIdx = nextChar();           
             screenPos.x = x;
             screenPos.y = (displayedHeight - 1) - y; 
-            color = lcdColorConversion(palette[paletteIdx], 1); //TODO anpassen an MODUS sobald fertig
+            color = lcdColorConversion(palette[paletteIdx]); //TODO anpassen an MODUS sobald fertig
             GUI_drawPoint(screenPos, color, DOT_PIXEL_1X1, DOT_FILL_AROUND);
         }      
         
@@ -81,7 +89,7 @@ static int displayPointNoEnc(int displayedHeight, int displayedWidth, int imageB
     return 0;
 }
 
-static int displayLineNoEnc(int displayedWidth, int displayedHeight, int imageBiWidth, RGBQUAD palette[]) {
+int displayLineNoEnc(int displayedWidth, int displayedHeight, int imageBiWidth, RGBQUAD palette[]) {
     if (imageBiWidth > READBUF_MAXSIZE) {
         ERR_HANDLER(true, "Breite ist zu groß um in Puffer eingelesen zu werden");
         return -1;
@@ -103,7 +111,7 @@ static int displayLineNoEnc(int displayedWidth, int displayedHeight, int imageBi
         lineStart.y = y;
 
         for(int i = 0; i < rowEntrys; i++) {
-            clr = lcdColorConversion(palette[(uint8_t) readBuffer[i]], 1); // buf[i] interpretiert als unsigned char // TODO AN MODUS ANPASSEN
+            clr = lcdColorConversion(palette[(uint8_t) readBuffer[i]]); // buf[i] interpretiert als unsigned char // TODO AN MODUS ANPASSEN
             colors[i] = clr;
         }
 
@@ -111,3 +119,9 @@ static int displayLineNoEnc(int displayedWidth, int displayedHeight, int imageBi
     }
     return 0;
 }
+
+int displayBitmapImage(int MODUS, int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
+    return 0;
+}
+
+

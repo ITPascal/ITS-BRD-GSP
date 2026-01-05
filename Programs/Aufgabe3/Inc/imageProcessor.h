@@ -23,7 +23,7 @@
  *  @return     uint16_t mit Farbverteilung
  ****************************************************************************************/
 
-uint16_t lcdColorConversion(RGBQUAD paletteColor, int MODE);
+uint16_t lcdColorConversion(RGBQUAD paletteColor);
 
 /*
  ****************************************************************************************
@@ -35,7 +35,7 @@ uint16_t lcdColorConversion(RGBQUAD paletteColor, int MODE);
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-static int displayNoPalette(int displayedHeight, int displayedWidth, int imageBiWidth);
+int displayNoPalette(int displayedHeight, int displayedWidth, int imageBiWidth);
 
 /*
  ****************************************************************************************
@@ -48,7 +48,7 @@ static int displayNoPalette(int displayedHeight, int displayedWidth, int imageBi
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-static int displayPointNoENc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
+int displayPointNoENc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
 
 /*
  ****************************************************************************************
@@ -61,7 +61,7 @@ static int displayPointNoENc(int displayedHeight, int displayedWidth, int imageB
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-static int displayLineNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
+int displayLineNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
 
 /*
  ****************************************************************************************
@@ -75,7 +75,7 @@ static int displayLineNoEnc(int displayedHeight, int displayedWidth, int imageBi
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-static int displayEncMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
+int displayEncMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
 
 /*
  ****************************************************************************************
@@ -89,7 +89,7 @@ static int displayEncMode(int displayedHeight, int displayedWidth, int imageBiWi
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-static int displayAbsMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
+int displayAbsMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
 
 /*
  ****************************************************************************************
