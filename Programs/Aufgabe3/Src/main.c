@@ -7,17 +7,10 @@
 #include "BMP_types.h"
 #include "headers.h"
 #include "stm32f429xx.h"
-#include "stm32f4xx_hal.h"
 #include "init.h"
 #include "LCD_GUI.h"
-#include "LCD_Touch.h"
-#include "lcd.h"
-#include "fontsFLASH.h"
-#include "additionalFonts.h"
 #include "input.h"
-#include "MS_basetypes.h"
 #include "errorhandler.h"
-#include "LCD_general.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,8 +48,6 @@ int main(void) {
             getFileHeader(&fileHeader);
             getInfoHeader(&infoHeader);
 
-            int displayedHeight = (infoHeader.biHeight <= LCD_HEIGHT) ? infoHeader.biHeight : LCD_HEIGHT;
-            int displayedWidth = (infoHeader.biWidth <= LCD_WIDTH) ? infoHeader.biWidth : LCD_WIDTH;
             int colorsUsed = (infoHeader.biClrUsed == 0) ? 256 : infoHeader.biClrUsed;    
             
             COMread((char*)palette, sizeof(RGBQUAD), colorsUsed); // TODO vorher auf Unterschiedliche Codierungen prüfen
@@ -68,8 +59,8 @@ int main(void) {
                 nextChar();
             }
             
-            if (displayEncMode(displayedHeight, displayedWidth, infoHeader.biWidth, palette) != 0) { //TODO Anpassen wenn imageProcessor fertig
-              ERR_HANDLER(true, "Fehler während ausgeben von Bild");
+            if (displayEncMode(infoHeader,  palette) != 0) { //TODO Anpassen wenn imageProcessor fertig
+              ERR_HANDLER(true, "Fehler in Encoded Bildausgabe");
             }
 
             while (nextChar() != EOF) {

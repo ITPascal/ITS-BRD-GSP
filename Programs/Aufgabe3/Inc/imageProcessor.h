@@ -15,6 +15,21 @@
 #define MODE_RGBPALETTE_LINE 3
 #define MODE_RGBNOPALETTE_LINE 4
 #define MODE_RGB_POINT 5
+/* 
+****************************************************************************************
+ *  @brief      Diese Funktion ermittelt die Höhe des auf dem Display dargestellten Bildes
+ *
+ *  @return     int displayedHeight
+ ****************************************************************************************/
+int getDisplayedHeight(int displayHeight, int imageHeight);
+
+/* 
+****************************************************************************************
+ *  @brief      Diese Funktion ermittelt die Breite des auf dem Display dargestellten Bildes
+ *
+ *  @return     int displayedWidth
+ ****************************************************************************************/
+int getDisplayedWidth(int displayWidth, int imageWidth);
 
 /*
  ****************************************************************************************
@@ -43,6 +58,7 @@ int displayNoPalette(int displayedHeight, int displayedWidth, int imageBiWidth);
  *
  *  @param      int displayedHeight Höhe des auf dem Bildschirm darstellbaren Teils des Bilds
  *              int displayedWidth  Breite des auf dem Bildschirm darstellbaren Teils des Bilds
+                int biHeight        Pixel pro Spalte des gesamten Bildes
  *              int biWidth         Pixel pro Zeile des gesamten Bildes
  *              RGBQUAD palette[]   Zu dazustelldem Bild zugehörige Palette
  *
@@ -75,35 +91,6 @@ int displayLineNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, 
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-int displayEncMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
-
-/*
- ****************************************************************************************
- *  @brief      Diese Funktion ließt ein encodiertes Bild im Absolute Mode ein und gibt
- *              es zeilenweise aus
- *
- *  @param      int displayedHeight Höhe des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int displayedWidth  Breite des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int biWidth         Pixel pro Zeile des gesamten Bildes
- *              RGBQUAD palette[]   Zu dazustelldem Bild zugehörige Palette
- *
- *  @returns    int-Wert der Fehler beschreibt
- ****************************************************************************************/
-int displayAbsMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
-
-/*
- ****************************************************************************************
- *  @brief      Diese Funktions kapselt die unterschiedliche Implementierungen der zeilenweisen
-                Bilddarstellung
- *
- *  @param      int MODUS           jeweillige Konstanten für unterschiedliche Implementierungen einsetzten 
- *              int displayedHeight Höhe des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int displayedWidth  Breite des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int biWidth         Pixel pro Zeile des gesamten Bildes
- *              RGBQUAD palette[]   Zu dazustelldem Bild zugehörige Palette
- *
- *  @returns    int-Wert der Fehler beschreibt
- ****************************************************************************************/
-int displayBitmapImage(int MODUS, int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
+int displayEncMode(BITMAPINFOHEADER info, RGBQUAD palette[]);
 #endif
 // EOF

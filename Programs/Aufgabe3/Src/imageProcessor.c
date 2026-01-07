@@ -6,9 +6,18 @@
 #include <stdint.h>
 #include "imageProcessor.h"
 #define READBUF_MAXSIZE 2400
+#define EOLN 0x0
+#define EOBM 0x1
+#define DELTA 0x2
 
 static char readBuffer[READBUF_MAXSIZE]; 
 static uint16_t colors[LCD_WIDTH];
+int getDisplayedHeight(int displayHeight, int imageHeight) {
+    return (imageHeight <= displayHeight) ? imageHeight : displayHeight;
+}
+int getDisplayedWidth(int displayWidth, int imageWidth) {
+    return (imageWidth <= imageWidth) ? imageWidth : displayWidth;
+}
 
 uint16_t lcdColorConversion(RGBQUAD paletteColor) {
     uint16_t red   = paletteColor.rgbRed >> 3;   
@@ -23,41 +32,67 @@ int getEOLPadding(int imageBiWidth) {
     return (4 - (imageBiWidth % 4)) % 4; // padding bei (Bildbreite % 4) != 0
 }
 
-int displayEncMode(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
-    
-    if (imageBiWidth > READBUF_MAXSIZE) {
-        ERR_HANDLER(true, "Bildbreite ueberschreitet Pufferkapazitaet");
-        return -1;
-    }
-    
-    int pxRowEnd = 0;
+int displayEncMode(BITMAPINFOHEADER info, RGBQUAD palette[]) {
+    const int displayedWidth = getDisplayedWidth(LCD_WIDTH, info.biWidth);
+    const int displayedHeight = getDisplayedHeight(LCD_HEIGHT, info.biHeight);
     int x = 0;
-    uint8_t pxCount = 0; 
-    uint8_t pxClrIdx = 0;
-
-    for (int y = 0; y < displayedHeight; y++) {
-        
-        while ((imageBiWidth + x) < pxRowEnd) {
-            colors[x] = lcdColorConversion(palette[pxClrIdx]);
+    int y = 0;
+    unsigned char c1 = nextChar();
+    unsigned char c2 = nextChar();
+    
+    if (c1 == 0) {
+        switch (c2) {
+            case EOLN:
+                if (x < displayedWidth) {
+                    return ERR_HANDLER(true, "Line nicht komplett gelesen");
+                }
+                if (y > displayedHeight) {
+                    Coordinate lineStart = {0, y};
+                    GUI_WriteLine(lineStart, displayedWidth, colors);
+                }
+                y++;
+                x = 0;
+                break;
+            case EOBM:
+                if (y >= displayedHeight) {
+                    return 0;
+                } 
+                else {
+                    return ERR_HANDLER(true, "nicht alles auszugebende ausgegeben");
+                }
+                break;
+            case DELTA:
+                x = x + nextChar();
+                y = y + nextChar();
+                break; 
+            default: // absolute mode
+                if (c2 < 0x02 || c2 > 0xFF) {
+                    return ERR_HANDLER(true, 
+                        "Anzahl an in Absolute Mode auszugebenden Zeichen ist außerhalb von gültigem Wertebereich");
+                }
+                int endOfRun = x + c2;
+                while (x < endOfRun) {
+                    RGBQUAD biColor = palette[nextChar()];
+                    uint16_t pxColor = lcdColorConversion(biColor);
+                    colors[x] = pxColor;
+                    x++;
+                }
+                if (c2 % 2 != 0) {
+                    nextChar();
+                }
+        }
+    }
+    else { // b1: count b2: colorIdx 
+        uint16_t runColor = lcdColorConversion(palette[c2]);
+        int endOfRun = (x + c2) -1;
+        while (x <= endOfRun && x < displayedWidth) {
+            if (x > info.biWidth) {
+                return ERR_HANDLER(true,"x < BitmapBildbreite obwohl das Zeilenende nicht erreicht ist"); 
+            }
+            colors[x] = runColor;
             x++;
         }
-        
-        while (x < imageBiWidth) {
-            pxCount = nextChar();
-            pxClrIdx = nextChar();
-            pxRowEnd = x + pxCount;
-            while ((x < pxRowEnd)) {
-                if (x < displayedWidth){
-                    colors[x] = lcdColorConversion(palette[pxClrIdx]);
-                }
-                x++;
-            }
-        }
-        Coordinate yCoord = {0,y};
-        GUI_WriteLine(yCoord, displayedWidth, colors);
-        x = 0;
     }
-    return 0;
 }
 
 int displayPointNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
@@ -117,10 +152,6 @@ int displayLineNoEnc(int displayedWidth, int displayedHeight, int imageBiWidth, 
 
         GUI_WriteLine(lineStart, rowEntrys, colors);       
     }
-    return 0;
-}
-
-int displayBitmapImage(int MODUS, int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]) {
     return 0;
 }
 
