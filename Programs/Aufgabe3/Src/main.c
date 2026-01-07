@@ -10,11 +10,9 @@
 #include "init.h"
 #include "LCD_GUI.h"
 #include "input.h"
-#include "errorhandler.h"
-#include <stdint.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include "imageProcessor.h"
+
 
 #define S7_MASK (1 << 7)
 #define PALETTE_SIZE 256
@@ -49,22 +47,25 @@ int main(void) {
             getInfoHeader(&infoHeader);
 
             int colorsUsed = (infoHeader.biClrUsed == 0) ? 256 : infoHeader.biClrUsed;    
-            
             COMread((char*)palette, sizeof(RGBQUAD), colorsUsed); // TODO vorher auf Unterschiedliche Codierungen prüfen
             
             int usedOffBits = FILEHEADER_SIZE + INFOHEADER_SIZE + (PALETTE_SIZE * sizeof(RGBQUAD));
             int paddingOffBits = fileHeader.bfOffBits - usedOffBits;
 
             for (int i = 0; i < paddingOffBits; i++) { 
-                nextChar();
+              nextChar();
             }
-            
-            if (displayEncMode(infoHeader,  palette) != 0) { //TODO Anpassen wenn imageProcessor fertig
-              ERR_HANDLER(true, "Fehler in Encoded Bildausgabe");
+            if (infoHeader.biCompression == BI_RLE8) {
+              displayEncMode(infoHeader,  palette);
             }
-
+            else if((infoHeader.biCompression == BI_RGB) && infoHeader.biBitCount == 8) {
+              //displayLineNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD *palette);
+            }
+            else if((infoHeader.biCompression = BI_RGB) && (infoHeader.biBitCount == 24)) {
+              displayNoPalette(infoHeader);
+            }
             while (nextChar() != EOF) {
-              //nichts tun
+              nextChar();
             }
             imageProcessed = true;
         }

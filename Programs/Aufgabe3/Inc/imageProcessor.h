@@ -33,24 +33,32 @@ int getDisplayedWidth(int displayWidth, int imageWidth);
 
 /*
  ****************************************************************************************
- *  @brief      Diese Funktion Codiert ein Pixel codierendes RGBQUAD Struct als 16bit-Wert
+ *  @brief      Diese Funktion Codiert ein, einen Pixel codierendes RGBQUAD Struct als 16bit-Wert
  *
  *  @return     uint16_t mit Farbverteilung
  ****************************************************************************************/
 
-uint16_t lcdColorConversion(RGBQUAD paletteColor);
+uint16_t lcdColorConversion_quad(RGBQUAD color);
+
+/*
+ ****************************************************************************************
+ *  @brief      Diese Funktion Codiert ein, einen Pixel codierendes RGBTRIPE Struct als 16bit-Wert
+ *
+ *  @return     uint16_t mit Farbverteilung
+ ****************************************************************************************/
+
+uint16_t lcdColorConversion_triple(RGBTRIPLE color);
 
 /*
  ****************************************************************************************
  *  @brief      Diese Funktion ließt ein unencodiertes 24bit Bild ein
  *
- *  @param      int displayedHeight Höhe des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int displayedWidth  Breite des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int biWidth         Pixel pro Zeile des gesamten Bildes
+ *  @param      BITMAPINFOHEADER infoheader Enthält informationen zum Bild welches 
+ *                                          einzulesen und auszugeben ist
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-int displayNoPalette(int displayedHeight, int displayedWidth, int imageBiWidth);
+int displayNoPalette(BITMAPINFOHEADER infoHeader);
 
 /*
  ****************************************************************************************
@@ -64,33 +72,31 @@ int displayNoPalette(int displayedHeight, int displayedWidth, int imageBiWidth);
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-int displayPointNoENc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
+int displayPointNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
 
 /*
  ****************************************************************************************
  *  @brief      Diese Funktion ließt ein unendcodiertes Bild ein und gibt es zeilenweise aus
  *
- *  @param      int displayedHeight Höhe des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int displayedWidth  Breite des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int biWidth         Pixel pro Zeile des gesamten Bildes
- *              RGBQUAD palette[]   Zu dazustelldem Bild zugehörige Palette
+ *  @param      BITMAPINFOHEADER infoheader Enthält informationen zum Bild welches 
+ *                                          einzulesen und auszugeben ist
+ *              RGBQUAD palette[]           Zu dazustelldem Bild zugehörige Palette
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-int displayLineNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD palette[]);
+int displayLineNoEnc(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]);
 
 /*
  ****************************************************************************************
  *  @brief      Diese Funktion ließt ein encodiertes Bild im Encoded Mode ein und gibt
  *              es zeilenweise aus
  *
- *  @param      int displayedHeight Höhe des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int displayedWidth  Breite des auf dem Bildschirm darstellbaren Teils des Bilds
- *              int biWidth         Pixel pro Zeile des gesamten Bildes
- *              RGBQUAD palette[]   Zu dazustelldem Bild zugehörige Palette
+ *  @param      BITMAPINFOHEADER infoheader Enthält informationen zum Bild welches 
+ *                                          einzulesen und auszugeben ist
+ *              RGBQUAD palette[]           Zu dazustelldem Bild zugehörige Palette
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-int displayEncMode(BITMAPINFOHEADER info, RGBQUAD palette[]);
+int displayEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]);
 #endif
 // EOF
