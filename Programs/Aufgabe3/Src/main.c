@@ -65,7 +65,7 @@ int main(void) {
         displayNoPalette(infoHeader);
       }
       while (nextChar() != EOF) {
-        nextChar();
+        //nothing
       }
       imageProcessed = true;
     }

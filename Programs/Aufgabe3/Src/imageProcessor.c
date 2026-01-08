@@ -97,9 +97,9 @@ int displayEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
                     }
             }
         }
-        else { // b1: count b2: colorIdx 
+        else { // c1: count c2: colorIdx 
             uint16_t runColor = lcdColorConversion_quad(palette[c2]);
-            int endOfRun = (x + c2) -1;
+            int endOfRun = (x + c1) - 1;
             while (x <= endOfRun) {
                 if (x < displayedWidth) {
                     colors[x] = runColor;
@@ -197,5 +197,6 @@ int displayNoPalette(BITMAPINFOHEADER infoHeader) {
         Coordinate lineStart = {0, y};
         GUI_WriteLine(lineStart, displayedWidth, colors);
     }
+    return 0;
 }
 
