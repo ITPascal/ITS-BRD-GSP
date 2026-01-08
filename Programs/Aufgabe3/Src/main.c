@@ -33,41 +33,41 @@ int main(void) {
     bool imageProcessed = false;
     bool buttonPressed = false;
 
-    while(1) {
-        currentButtonState = (GPIOF->IDR & S7_MASK);
-        if (currentButtonState == 0) {
-          imageProcessed = false;
-        }
-
-        if (!imageProcessed) {
-            GUI_clear(WHITE);
-            openNextFile();
-            readHeaders();
-            getFileHeader(&fileHeader);
-            getInfoHeader(&infoHeader);
-
-            int colorsUsed = (infoHeader.biClrUsed == 0) ? 256 : infoHeader.biClrUsed;    
-            COMread((char*)palette, sizeof(RGBQUAD), colorsUsed); // TODO vorher auf Unterschiedliche Codierungen prüfen
+  while(1) {
+    currentButtonState = (GPIOF->IDR & S7_MASK);
+      if (currentButtonState == 0) {
+        imageProcessed = false;
+      }
+      if (!imageProcessed) {
+        openNextFile();
+        readHeaders();
+        getFileHeader(&fileHeader);
+        getInfoHeader(&infoHeader);
+      if (infoHeader.biBitCount != 24) {
+        int colorsUsed = (infoHeader.biClrUsed == 0) ? 256 : infoHeader.biClrUsed;    
+        COMread((char*)palette, sizeof(RGBQUAD), colorsUsed);
+      }
             
-            int usedOffBits = FILEHEADER_SIZE + INFOHEADER_SIZE + (PALETTE_SIZE * sizeof(RGBQUAD));
-            int paddingOffBits = fileHeader.bfOffBits - usedOffBits;
+      int usedOffBits = FILEHEADER_SIZE + INFOHEADER_SIZE + (PALETTE_SIZE * sizeof(RGBQUAD));
+      int paddingOffBits = fileHeader.bfOffBits - usedOffBits;
 
-            for (int i = 0; i < paddingOffBits; i++) { 
-              nextChar();
-            }
-            if (infoHeader.biCompression == BI_RLE8) {
-              displayEncMode(infoHeader,  palette);
-            }
-            else if((infoHeader.biCompression == BI_RGB) && infoHeader.biBitCount == 8) {
-              //displayLineNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth, RGBQUAD *palette);
-            }
-            else if((infoHeader.biCompression = BI_RGB) && (infoHeader.biBitCount == 24)) {
-              displayNoPalette(infoHeader);
-            }
-            while (nextChar() != EOF) {
-              nextChar();
-            }
-            imageProcessed = true;
-        }
+      for(int i = 0; i < paddingOffBits; i++) { 
+        nextChar();
+      }
+      // choose display method
+      if (infoHeader.biCompression == BI_RLE8) {
+        displayEncMode(infoHeader,  palette);
+      }
+      else if((infoHeader.biCompression == BI_RGB) && infoHeader.biBitCount == 8) {
+        displayLineNoEnc(infoHeader, palette);
+      }
+      else if((infoHeader.biCompression = BI_RGB) && (infoHeader.biBitCount == 24)) {
+        displayNoPalette(infoHeader);
+      }
+      while (nextChar() != EOF) {
+        nextChar();
+      }
+      imageProcessed = true;
     }
+  }
 }
