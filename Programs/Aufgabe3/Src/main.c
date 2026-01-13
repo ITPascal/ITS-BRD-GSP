@@ -5,6 +5,7 @@
   ******************************************************************************
   */
 #include "BMP_types.h"
+#include "errorhandler.h"
 #include "headers.h"
 #include "stm32f429xx.h"
 #include "init.h"
@@ -35,12 +36,14 @@ int main(void) {
 
   while(1) {
     currentButtonState = (GPIOF->IDR & S7_MASK);
-      if (currentButtonState == 0) {
+    if (currentButtonState == 0) {
         imageProcessed = false;
-      }
-      if (!imageProcessed) {
+        GUI_clear(WHITE); 
+    }
+
+    if (!imageProcessed) {
         openNextFile();
-        readHeaders();
+        imageProcessed = (readHeaders() == NOK); // image processing done if header is NOK
         getFileHeader(&fileHeader);
         getInfoHeader(&infoHeader);
       if (infoHeader.biBitCount != 24) {
@@ -54,6 +57,9 @@ int main(void) {
       for(int i = 0; i < paddingOffBits; i++) { 
         nextChar();
       }
+    }
+
+    if (!imageProcessed) {
       // choose display method
       if (infoHeader.biCompression == BI_RLE8) {
         displayEncMode(infoHeader,  palette);
@@ -61,8 +67,11 @@ int main(void) {
       else if((infoHeader.biCompression == BI_RGB) && infoHeader.biBitCount == 8) {
         displayLineNoEnc(infoHeader, palette);
       }
-      else if((infoHeader.biCompression = BI_RGB) && (infoHeader.biBitCount == 24)) {
+      else if((infoHeader.biCompression == BI_RGB) && (infoHeader.biBitCount == 24)) {
         displayNoPalette(infoHeader);
+      }
+      else {
+        ERR_HANDLER(true, "Bildformat nicht Unterstuetzt");
       }
       while (nextChar() != EOF) {
         //nothing

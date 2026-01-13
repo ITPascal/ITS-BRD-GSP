@@ -17,7 +17,7 @@ int getDisplayedHeight(int displayHeight, int imageHeight) {
     return (imageHeight <= displayHeight) ? imageHeight : displayHeight;
 }
 int getDisplayedWidth(int displayWidth, int imageWidth) {
-    return (imageWidth <= imageWidth) ? imageWidth : displayWidth;
+    return (imageWidth <= displayWidth) ? imageWidth : displayWidth;
 }
 
 uint16_t lcdColorConversion_quad(RGBQUAD color) {
@@ -43,6 +43,8 @@ int getEOLPadding(int imageBiWidth, int bytesPerPixel) {
 }
 
 int displayEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
+
+    
     const int displayedWidth = getDisplayedWidth(LCD_WIDTH, infoHeader.biWidth);
     const int displayedHeight = getDisplayedHeight(LCD_HEIGHT, infoHeader.biHeight);
     int x = 0;
@@ -53,10 +55,14 @@ int displayEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
         unsigned char c1 = nextChar();
         unsigned char c2 = nextChar();
 
+        if ((y >= infoHeader.biHeight) || (y < -1)) {
+            return ERR_HANDLER(true,"ungueltiger y-Wert"); 
+        }
+
         if (c1 == 0) {
             switch (c2) {
                 case EOLN:
-                    if ((y < displayedHeight) && (y >= 0)) {
+                    if (y < displayedHeight) {
                         Coordinate lineStart = {0, y};
                         GUI_WriteLine(lineStart, displayedWidth, colors);
                     }
@@ -64,10 +70,13 @@ int displayEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
                     x = 0;
                     break;
                 case EOBM:
-                    if (y <= 0) {
-                        eobmReached = true;
-                    } 
-                    else {
+                    if (x > 0 && y < displayedHeight && y >= 0) {
+                        Coordinate lineStart = {0, y};
+                        GUI_WriteLine(lineStart, displayedWidth, colors);
+                        y--;
+                    }
+                    eobmReached = true;
+                    if (y > -1) {
                         return ERR_HANDLER(true, "nicht alles auszugebende ausgegeben");
                     }
                     break;
@@ -95,17 +104,18 @@ int displayEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
                     if (c2 % 2 != 0) {
                         nextChar();
                     }
+                    break;
             }
         }
         else { // c1: count c2: colorIdx 
             uint16_t runColor = lcdColorConversion_quad(palette[c2]);
             int endOfRun = (x + c1) - 1;
             while (x <= endOfRun) {
-                if (x < displayedWidth) {
+                if ((x < displayedWidth) && (y < displayedHeight)) {
                     colors[x] = runColor;
                 }
-                else if (x >= infoHeader.biWidth) {
-                    return ERR_HANDLER(true,"x > BitmapBildbreite obwohl das Zeilenende nicht erreicht ist"); 
+                else if ((x > infoHeader.biWidth) || (x < 0)) {
+                    return ERR_HANDLER(true,"x-Koordinate von Pixel ist ausserhalb von in Infoheader angegebenem Bildbereich"); 
                 }
                 x++;
             }
@@ -144,30 +154,25 @@ int displayPointNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth,
 }
 
 int displayLineNoEnc(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
-    if (infoHeader.biWidth > READBUF_MAXSIZE) {
-        ERR_HANDLER(true, "Breite ist zu groß um in Puffer eingelesen zu werden");
-        return -1;
-    }
-
-    uint16_t clr;
+    uint16_t color;
     const int displayedWidth = getDisplayedWidth(LCD_WIDTH, infoHeader.biWidth);
+    const int displayedHeight = getDisplayedWidth(LCD_HEIGHT, infoHeader.biHeight);
     const int eolPadding = getEOLPadding(infoHeader.biWidth, sizeof(RGBQUAD));
     const int unusedCharCount = infoHeader.biWidth - (displayedWidth + eolPadding);
 
-    for(int y = 0; y < displayedWidth; y++) {
-        Coordinate lineStart = {0, y};
-        COMread(readBuffer, sizeof(int8_t), displayedWidth);
-
+    for(int y = (infoHeader.biHeight - 1); y >= 0; y--) {
+        COMread(readBuffer, sizeof(unsigned char), displayedWidth);
         for (int i = 0; i < unusedCharCount; i++) {
             nextChar(); 
         }
-
-        for(int i = 0; i < displayedWidth; i++) {
-            RGBQUAD color = palette[readBuffer[i]];
-            colors[i] = lcdColorConversion_quad(color);
-        }
-
-        GUI_WriteLine(lineStart, displayedWidth, colors);       
+        if (y < displayedHeight) {
+            for(int x = 0; x < displayedWidth; x++) {
+                RGBQUAD color = palette[readBuffer[x]];
+                colors[x] = lcdColorConversion_quad(color);
+            }
+            Coordinate lineStart = {0, y};
+            GUI_WriteLine(lineStart, displayedWidth, colors); 
+        }      
     }
     return 0;
 }
@@ -178,24 +183,24 @@ int displayNoPalette(BITMAPINFOHEADER infoHeader) {
     }
 
     const int displayedWidth = getDisplayedWidth(LCD_WIDTH, infoHeader.biWidth);
+    const int displayedHeight = getDisplayedHeight(LCD_HEIGHT, infoHeader.biHeight);
     const int eolPadding = getEOLPadding(infoHeader.biWidth, sizeof(RGBTRIPLE));
+    const int unusedTripleCount = infoHeader.biWidth - (displayedWidth + eolPadding);
 
     for (int y = (infoHeader.biHeight -1); y >= 0; y--) {
         
-        for (int x = 0; x < infoHeader.biWidth; x++) {
-            unsigned char buf[sizeof(RGBTRIPLE)]; 
-
-            COMread(buf, sizeof(unsigned char), sizeof(RGBTRIPLE));
-            if (x < displayedWidth) {
-                RGBTRIPLE* color = (RGBTRIPLE*) buf;
-                colors[x] = lcdColorConversion_triple(*color);
+        COMread((char*)readBuffer, sizeof(RGBTRIPLE), displayedWidth);
+        
+        if (y < displayedHeight) {
+            RGBTRIPLE* readBufferP = (RGBTRIPLE*) &readBuffer;
+            for (int x = 0; x < displayedWidth; x++) {
+                uint16_t color = lcdColorConversion_triple(readBufferP[x]);
+                colors[x] = color;
             }
+            Coordinate lineStart = {0, y};
+            GUI_WriteLine(lineStart, displayedWidth, colors);
         }
-        for (int i = 0; i < eolPadding; i++) {
-            nextChar(); //nichts tun
-        }
-        Coordinate lineStart = {0, y};
-        GUI_WriteLine(lineStart, displayedWidth, colors);
+        COMread(readBuffer, sizeof(RGBTRIPLE), unusedTripleCount); //read unused chars
     }
     return 0;
 }
