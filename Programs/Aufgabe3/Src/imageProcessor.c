@@ -4,11 +4,14 @@
 #include "LCD_GUI.h"
 #include "LCD_general.h"
 #include <stdint.h>
+#include <math.h>
+#include <stdlib.h>
 #include "imageProcessor.h"
 #define READBUF_MAXSIZE 2400
 #define EOLN 0x0
 #define EOBM 0x1
 #define DELTA 0x2
+#define MIN(a,b)   (((a) > (b) ? (a) : (b)))
 
 static char readBuffer[READBUF_MAXSIZE]; 
 static uint16_t colors[LCD_WIDTH];
@@ -16,6 +19,7 @@ static uint16_t colors[LCD_WIDTH];
 int getDisplayedHeight(int displayHeight, int imageHeight) {
     return (imageHeight <= displayHeight) ? imageHeight : displayHeight;
 }
+
 int getDisplayedWidth(int displayWidth, int imageWidth) {
     return (imageWidth <= displayWidth) ? imageWidth : displayWidth;
 }
@@ -41,10 +45,36 @@ uint16_t lcdColorConversion_triple(RGBTRIPLE color) {
 int getEOLPadding(int imageBiWidth, int bytesPerPixel) {
     return (4 - ((imageBiWidth * bytesPerPixel) % 4)) % 4;
 }
+static int getAvgBoxPx(unsigned char *box[], int box_width, int box_height, RGBQUAD* palette, int paletteSize) {
+    uint32_t blueSum = 0;
+    uint32_t greenSum = 0;
+    uint32_t redSum = 0;
+    
+    for(int y = 0; y < box_height; y++) {
+        for (int x = 0; x < box_width; x++) {
+            unsigned char *currRow = box[y];
+            if (currRow[x] > paletteSize) {
+                ERR_HANDLER(true, "color index out of bounds for palette");
+            }
+            RGBQUAD color_struct = palette[currRow[x]];
+            blueSum += color_struct.rgbBlue;
+            greenSum += color_struct.rgbGreen;
+            redSum += color_struct.rgbRed;
+        }
+    }
+    blueSum /= box_height * box_width;
+    greenSum /= box_height * box_width;
+    redSum /= box_height * box_width;
+    RGBQUAD avrColor = {
+        (uint16_t) blueSum,
+        (int16_t) greenSum,
+        (uint16_t) redSum 
+    };
+    return lcdColorConversion_quad(avrColor);
+}
 
 int displayEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
 
-    
     const int displayedWidth = getDisplayedWidth(LCD_WIDTH, infoHeader.biWidth);
     const int displayedHeight = getDisplayedHeight(LCD_HEIGHT, infoHeader.biHeight);
     int x = 0;
@@ -155,11 +185,55 @@ int displayPointNoEnc(int displayedHeight, int displayedWidth, int imageBiWidth,
 
 int displayLineNoEnc(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
     uint16_t color;
-    const int displayedWidth = getDisplayedWidth(LCD_WIDTH, infoHeader.biWidth);
-    const int displayedHeight = getDisplayedWidth(LCD_HEIGHT, infoHeader.biHeight);
     const int eolPadding = getEOLPadding(infoHeader.biWidth, sizeof(RGBQUAD));
-    const int unusedCharCount = infoHeader.biWidth - (displayedWidth + eolPadding);
+    const double scale_x = LCD_WIDTH / ((double) infoHeader.biWidth);
+    const double scale_y = LCD_HEIGHT / ((double) infoHeader.biHeight);
+    const double scale = MIN(scale_x, scale_y);
+    const int normBox_width = (int) ceil(1 / scale);
+    const int normBox_height = (int) ceil(1 / scale);
+    const int displayedWidth  = (int)floor((infoHeader.biWidth * scale) + 0.5); // varies from other display methods
+    const int displayedHeight = (int)floor((infoHeader.biHeight * scale) + 0.5); // -"-
 
+    
+    for(int img_y = (displayedHeight - 1); img_y >= 0; img_y--) {
+        for(int i = 0; i < normBox_height; i++) {   // TODO: Nicht zwingend immer normbox Hight, immer größeren Wert nehemn
+                COMread(&readBuffer[i * infoHeader.biWidth], sizeof(char),infoHeader.biWidth);
+                for(int j = 0; j < eolPadding; j++) {
+                    nextChar(); // nichts tun
+                }
+            }
+            
+        for (int img_x = 0; img_x < displayedWidth; img_x++) {
+            
+            int box_x = floor(img_x/scale_x);
+            int box_y = floor(img_y/scale_y);
+
+            int box_width = normBox_width;
+            int box_height = normBox_height;
+
+            if ((box_x + normBox_width) >= infoHeader.biWidth) {
+                box_width = (infoHeader.biWidth - box_x);
+            }
+            
+            if ((box_y + normBox_height) > infoHeader.biHeight) {
+                box_height = (infoHeader.biHeight - box_y);
+            }
+            
+            unsigned char* BoxArr[box_height]; // pointers to box_x with offset for different rows
+            for (int i = 0; i < box_height; i++) {  
+                int boxRowIdx = i * infoHeader.biWidth;
+                BoxArr[i] = (unsigned char*) &readBuffer[boxRowIdx + box_x];
+            }
+            int paletteSize = infoHeader.biClrUsed == NULL ? 256 : infoHeader.biClrUsed;
+            colors[img_x] = getAvgBoxPx((unsigned char**) BoxArr, box_width, box_height, palette, paletteSize);
+        }
+        Coordinate lineStart = {0, img_y};
+        GUI_WriteLine(lineStart, LCD_WIDTH, colors);
+    }
+    
+    
+    
+    /*
     for(int y = (infoHeader.biHeight - 1); y >= 0; y--) {
         COMread(readBuffer, sizeof(unsigned char), displayedWidth);
         for (int i = 0; i < unusedCharCount; i++) {
@@ -175,6 +249,7 @@ int displayLineNoEnc(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]) {
         }      
     }
     return 0;
+    */
 }
 
 int displayNoPalette(BITMAPINFOHEADER infoHeader) {
@@ -204,4 +279,3 @@ int displayNoPalette(BITMAPINFOHEADER infoHeader) {
     }
     return 0;
 }
-
