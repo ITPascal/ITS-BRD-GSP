@@ -9,12 +9,10 @@
 #define _IMAGEPROCESSOR_H
 #include "BMP_types.h"
 #include <stdint.h>
+#include <stdbool.h>
 
-#define MODE_ABSOLUTE 1
-#define MODE_ENCODED 2
-#define MODE_RGBPALETTE_LINE 3
-#define MODE_RGBNOPALETTE_LINE 4
-#define MODE_RGB_POINT 5
+#define READBUF_MAXSIZE 2400
+#define MIN(a,b)   (((a) > (b) ? (a) : (b)))
 /* 
 ****************************************************************************************
  *  @brief      Diese Funktion ermittelt die Höhe des auf dem Display dargestellten Bildes
@@ -30,6 +28,15 @@ int getDisplayedHeight(int displayHeight, int imageHeight);
  *  @return     int displayedWidth
  ****************************************************************************************/
 int getDisplayedWidth(int displayWidth, int imageWidth);
+
+/* 
+****************************************************************************************
+ *  @brief      Diese Funktion ob das Bild per Boxcompression ohne Verzerrung verkleinert
+                werden kann. Es werden Verkleinerungen von 1/2, 1/3, 1/4 und 1/5 Unterstützt.
+ *
+ *  @return     bool isApplicable
+ ****************************************************************************************/
+bool boxComprApplicable(int imgWidth, int imgHeight);
 
 /*
  ****************************************************************************************
@@ -97,6 +104,19 @@ int displayLineNoEnc(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]);
  *
  *  @returns    int-Wert der Fehler beschreibt
  ****************************************************************************************/
-int displayEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]);
+int displayStdEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]);
+
+/*
+ ****************************************************************************************
+ *  @brief      Diese Funktion ließt ein encodiertes Bild im Encoded Mode ein und gibt
+ *              es zeilenweise aus
+ *
+ *  @param      BITMAPINFOHEADER infoheader Enthält informationen zum Bild welches 
+ *                                          einzulesen und auszugeben ist
+ *              RGBQUAD palette[]           Zu dazustelldem Bild zugehörige Palette
+ *
+ *  @returns    int-Wert der Fehler beschreibt
+ ****************************************************************************************/
+int displayComprEncMode(BITMAPINFOHEADER infoHeader, RGBQUAD palette[]);
 #endif
 // EOF
