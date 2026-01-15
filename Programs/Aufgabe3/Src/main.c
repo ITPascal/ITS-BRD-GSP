@@ -50,10 +50,9 @@ int main(void) {
         int colorsUsed = (infoHeader.biClrUsed == 0) ? 256 : infoHeader.biClrUsed;    
         COMread((char*)palette, sizeof(RGBQUAD), colorsUsed);
       }
-            
       int usedOffBits = FILEHEADER_SIZE + INFOHEADER_SIZE + (PALETTE_SIZE * sizeof(RGBQUAD));
       int paddingOffBits = fileHeader.bfOffBits - usedOffBits;
-
+    
       for(int i = 0; i < paddingOffBits; i++) { 
         nextChar();
       }
@@ -61,8 +60,12 @@ int main(void) {
 
     if (!imageProcessed) {
       // choose display method
-      if (infoHeader.biCompression == BI_RLE8) {
-        displayEncMode(infoHeader,  palette);
+      if (infoHeader.biCompression == BI_RLE8 && 
+          boxComprApplicable(infoHeader.biWidth, infoHeader.biHeight)) {
+        displayComprEncMode(infoHeader,  palette); 
+      }
+      else if (infoHeader.biCompression == BI_RLE8) {
+        displayStdEncMode(infoHeader,  palette);
       }
       else if((infoHeader.biCompression == BI_RGB) && infoHeader.biBitCount == 8) {
         displayLineNoEnc(infoHeader, palette);
